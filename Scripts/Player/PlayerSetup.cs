@@ -5,13 +5,28 @@ using Mirror;
 
 public class PlayerSetup : NetworkBehaviour
 {
+    [SerializeField] private GameObject[] objectDisable = null;
+    [SerializeField] private Behaviour[] scriptDisable = null;
+    [SerializeField] private string tagNamePlayer = "Player";
+    [SerializeField] private string tagNotLocalPlayer = "nlPlayer";
+
     void Start()
     {
-        
-    }
-
-    void Update()
-    {
-        
+        if (!isLocalPlayer)
+        {
+            for (byte i = 0; i < objectDisable.Length; i++)
+            {
+                objectDisable[i].SetActive(false);
+            }
+            for (byte i = 0; i < scriptDisable.Length; i++)
+            {
+                scriptDisable[i].enabled = false;
+            }
+            transform.tag = tagNamePlayer;
+        }
+        else
+        {
+            transform.tag = tagNotLocalPlayer;
+        }
     }
 }
