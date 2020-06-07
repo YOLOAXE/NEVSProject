@@ -61,7 +61,7 @@ public class LoadMap : MonoBehaviour
     IEnumerator AplyPPV(float time, PostProcessVolume p)
     {
         float varTime = 0.0f;
-        while (varTime > time)
+        while (varTime < time)
         {
             varTime += Time.deltaTime;
             p.weight = (varTime / time);

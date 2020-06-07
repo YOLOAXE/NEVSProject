@@ -898,6 +898,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3283444611125664385}
+  - {fileID: 8363534403301393235}
   m_Father: {fileID: 1844946379733903189}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1571,6 +1572,36 @@ Transform:
   - {fileID: 600622162709299888}
   m_Father: {fileID: 73509161063852212}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3743751506402433595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8363534403301393235}
+  m_Layer: 0
+  m_Name: Cr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8363534403301393235
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3743751506402433595}
+  m_LocalRotation: {x: 0.051243603, y: 8.6402e-11, z: 5.7411853e-12, w: 0.9986862}
+  m_LocalPosition: {x: 0.0051132175, y: 0.5125196, z: 0.28218237}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1851649229325329139}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3852614937767052865
 GameObject:
@@ -2683,6 +2714,9 @@ MonoBehaviour:
   smoothHeadBobSpeed: 5
   experimental: 0
   smoothInputMagnitudeSpeed: 5
+  anim: {fileID: 2898941309862279106}
+  busteP: {fileID: 9162655585488217723}
+  cr: {fileID: 3173387964543671422}
   m_inputVector: {x: 0, y: 0}
   m_smoothInputVector: {x: 0, y: 0}
   m_finalMoveDir: {x: 0, y: 0, z: 0}
@@ -2757,7 +2791,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneId: 840313266
+  sceneId: 1827176324
   serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
@@ -2808,6 +2842,8 @@ MonoBehaviour:
   - {fileID: 3871426230703722855}
   - {fileID: 2040212005753486270}
   - {fileID: 8681953687605112723}
+  camRotate: {fileID: 3173387964543671422}
+  rigSpine: {fileID: 3743751506402433595}
 --- !u!114 &4640038225667620888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2823,6 +2859,7 @@ MonoBehaviour:
   noise: 0.1
   anim: {fileID: 2898941309862279106}
   controller: {fileID: 7318519359998418707}
+  timeAplyIsGrounded: 0.1
 --- !u!114 &4640038226229626371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2850,6 +2887,7 @@ MonoBehaviour:
     - {x: 0, y: 0, z: 0}
     - {x: 0, y: 0, z: 0}
     freeHand: 0101
+    AnimationHand: 
   - Name: Lampe Torche
     idArme: 1
     handPos:
@@ -2859,6 +2897,7 @@ MonoBehaviour:
     - {x: 0, y: 0, z: 0}
     - {x: 100, y: -180, z: 0}
     freeHand: 0100
+    AnimationHand: 
   currentIDArme: 0
   pivotCamera: {fileID: 7318519360912458565}
   turnHandObject: {fileID: 3173387964543671422}
@@ -3220,7 +3259,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   sensitivity: {x: 80, y: 80}
   smoothAmount: {x: 80, y: 80}
-  lookAngleMinMax: {x: -90, y: 75}
+  lookAngleMinMax: {x: -90, y: 70}
 --- !u!1 &7388225546797623220
 GameObject:
   m_ObjectHideFlags: 0

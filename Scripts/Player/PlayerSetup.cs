@@ -10,6 +10,8 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField] private string tagNamePlayer = "Player";
     [SerializeField] private string tagNotLocalPlayer = "nlPlayer";
     [SerializeField] private GameObject[] dfObjectChange = null;
+    [SerializeField] private GameObject camRotate = null;
+    [SerializeField] private GameObject rigSpine = null;
 
     void Start()
     {
@@ -23,7 +25,8 @@ public class PlayerSetup : NetworkBehaviour
             {
                 scriptDisable[i].enabled = false;
             }
-            transform.tag = tagNotLocalPlayer; 
+            transform.tag = tagNotLocalPlayer;
+            camRotate.transform.parent = rigSpine.transform;
         }
         else
         {
