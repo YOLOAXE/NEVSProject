@@ -1257,6 +1257,7 @@ Transform:
   - {fileID: 242291378}
   - {fileID: 65971447}
   - {fileID: 1373725148}
+  - {fileID: 2044783306}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1687,7 +1688,7 @@ Transform:
   m_Children:
   - {fileID: 259982803}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1795431985
 MonoBehaviour:
@@ -1771,7 +1772,7 @@ MonoBehaviour:
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 2734846864597190715, guid: cb4bb9f38e445fb469f173d1427c1bdf,
+  playerPrefab: {fileID: 7318519359998418705, guid: cb4bb9f38e445fb469f173d1427c1bdf,
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
@@ -2106,7 +2107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2044783306}
   - component: {fileID: 2044783305}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PPV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2137,12 +2138,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2044783304}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -44.31358, y: -7.3770027, z: -2.5652883}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_Father: {fileID: 1205916386}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2143954619
 GameObject:

@@ -5,19 +5,17 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float noise = 0.1f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Animator anim = null;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        anim.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+        anim.SetFloat("Vertical", Input.GetAxis("Vertical") * (Input.GetButton("Sprint") ? 2f : 1f));
+        noise = ((Mathf.Abs(Input.GetAxis("Horizontal")) + Mathf.Abs(Input.GetAxis("Vertical"))) * (Input.GetButtonDown("Sprint") ? 1f : 2f)) + 0.1f;
     }
 
-    public float getNoise() {
+    public float getNoise()
+    {
         return this.noise;
     }
 }

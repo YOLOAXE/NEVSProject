@@ -22,11 +22,11 @@ public class PlayerSetup : NetworkBehaviour
             {
                 scriptDisable[i].enabled = false;
             }
-            transform.tag = tagNamePlayer;
+            transform.tag = tagNotLocalPlayer; 
         }
         else
         {
-            transform.tag = tagNotLocalPlayer;
+            transform.tag = tagNamePlayer;
         }
     }
 }
