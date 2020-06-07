@@ -76,6 +76,10 @@ namespace DitzelGames.FastIK
                     tHand[i].AplyArmePosAngle(wI[currentIDArme].GetTabHandPos(i), wI[currentIDArme].GetTabHandAngle(i));
                 }
             }
+            if(Input.GetKeyDown(KeyCode.F))
+            {
+                currentIDArme = currentIDArme == 0 ? 1 : 0;
+            }
         }
     }
 }

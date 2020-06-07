@@ -795,7 +795,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 612458288465599425}
   m_Enabled: 1
-  m_CastShadows: 3
+  m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1003,7 +1003,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028209006328784713}
   m_Enabled: 1
-  m_CastShadows: 3
+  m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1097,7 +1097,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2040212005753486270}
   m_Enabled: 1
-  m_CastShadows: 3
+  m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -1641,7 +1641,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3871426230703722855}
   m_Enabled: 1
-  m_CastShadows: 3
+  m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -2514,6 +2514,7 @@ GameObject:
   - component: {fileID: 4640038225667620888}
   - component: {fileID: 4640038226229626371}
   - component: {fileID: 5520591012532613130}
+  - component: {fileID: 1265339342}
   m_Layer: 0
   m_Name: P_First_Person_Controller
   m_TagString: Untagged
@@ -2756,7 +2757,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneId: 792196529
+  sceneId: 840313266
   serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
@@ -2801,6 +2802,12 @@ MonoBehaviour:
   - {fileID: 7318519360968813825}
   tagNamePlayer: Player
   tagNotLocalPlayer: nlPlayer
+  dfObjectChange:
+  - {fileID: 2028209006328784713}
+  - {fileID: 612458288465599425}
+  - {fileID: 3871426230703722855}
+  - {fileID: 2040212005753486270}
+  - {fileID: 8681953687605112723}
 --- !u!114 &4640038225667620888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2815,6 +2822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noise: 0.1
   anim: {fileID: 2898941309862279106}
+  controller: {fileID: 7318519359998418707}
 --- !u!114 &4640038226229626371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2849,7 +2857,7 @@ MonoBehaviour:
     - {x: 0.3, y: -0.2, z: 0.5}
     handAngle:
     - {x: 0, y: 0, z: 0}
-    - {x: 99.94, y: -180, z: 0}
+    - {x: 100, y: -180, z: 0}
     freeHand: 0100
   currentIDArme: 0
   pivotCamera: {fileID: 7318519360912458565}
@@ -2870,6 +2878,20 @@ MonoBehaviour:
   syncInterval: 0.1
   clientAuthority: 1
   animator: {fileID: 2898941309862279106}
+--- !u!114 &1265339342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7318519359998418705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44b333d16e7b60e4b91424f464a47703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllLight: []
+  distanceLight: 25
 --- !u!1 &7318519360142713742
 GameObject:
   m_ObjectHideFlags: 0
@@ -2935,7 +2957,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_RenderingPath: 3
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3009,12 +3031,18 @@ MonoBehaviour:
       colorBlindnessType: 0
       colorBlindnessStrength: 1
   m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
+  m_ShowToolkit: 1
+  m_ShowCustomSorter: 1
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
-  m_AfterStackBundles: []
+  m_AfterStackBundles:
+  - assemblyQualifiedName: DitzelGames.PostProcessingTextureOverlay.ColorEffect,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: DitzelGames.PostProcessingTextureOverlay.HardLight, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: DitzelGames.PostProcessingTextureOverlay.TextureOverlay,
+      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &7318519360142713736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3192,7 +3220,7 @@ MonoBehaviour:
       m_RotationOrder: 4
   sensitivity: {x: 80, y: 80}
   smoothAmount: {x: 80, y: 80}
-  lookAngleMinMax: {x: -90, y: 90}
+  lookAngleMinMax: {x: -90, y: 75}
 --- !u!1 &7388225546797623220
 GameObject:
   m_ObjectHideFlags: 0
@@ -3477,7 +3505,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8681953687605112723}
   m_Enabled: 1
-  m_CastShadows: 3
+  m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1

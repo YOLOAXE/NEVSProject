@@ -9,6 +9,7 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField] private Behaviour[] scriptDisable = null;
     [SerializeField] private string tagNamePlayer = "Player";
     [SerializeField] private string tagNotLocalPlayer = "nlPlayer";
+    [SerializeField] private GameObject[] dfObjectChange = null;
 
     void Start()
     {
@@ -27,6 +28,10 @@ public class PlayerSetup : NetworkBehaviour
         else
         {
             transform.tag = tagNamePlayer;
+            foreach(GameObject o in dfObjectChange)
+            {
+                o.layer = LayerMask.NameToLayer("DrawAlways");
+            }
         }
     }
 }
