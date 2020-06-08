@@ -387,14 +387,14 @@ namespace VHS
                 }
                 else
                 {
-                    busteP.SetActive(true);
+                    busteP.layer = LayerMask.NameToLayer("Default");
                     anim.SetBool("acroupie", false);
                     StartCoroutine(crouchAnimeCR(0.5f, new Vector3(0.0f, 1.05f, 0.2f), new Vector3(0.0f, 1.65f, 0.2f)));
                 }
             }
             else
             {
-                busteP.SetActive(false);
+                busteP.layer = LayerMask.NameToLayer("DrawAlways");
                 anim.SetBool("acroupie", true);
                 StartCoroutine(crouchAnimeCR(0.5f, new Vector3(0.0f, 1.65f, 0.2f), new Vector3(0.0f, 1.05f, 0.2f)));
             }
