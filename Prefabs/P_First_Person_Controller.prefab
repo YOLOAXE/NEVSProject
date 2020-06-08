@@ -479,7 +479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneId: 30314157
+  sceneId: 3682645294
   serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
@@ -547,7 +547,7 @@ MonoBehaviour:
   noise: 0.1
   anim: {fileID: 1994234451133648511}
   controller: {fileID: 606047143229114037}
-  timeAplyIsGrounded: 0.1
+  timeAplyIsGrounded: 0.15
 --- !u!114 &4685512586169912352
 MonoBehaviour:
   m_ObjectHideFlags: 0
