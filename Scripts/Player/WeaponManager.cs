@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 namespace DitzelGames.FastIK
 {
@@ -58,11 +59,11 @@ namespace DitzelGames.FastIK
         }
     }
 
-    public class WeaponManager : MonoBehaviour
+    public class WeaponManager : NetworkBehaviour
     {
         [SerializeField] private Hand[] tHand = null;
         [SerializeField] private WeaponInfo[] wI = null;
-        [SerializeField] private int currentIDArme = 0;
+        [SyncVar] public int currentIDArme = 0;
         [SerializeField] private GameObject pivotCamera = null;
         [SerializeField] private GameObject turnHandObject = null;
 
@@ -77,10 +78,23 @@ namespace DitzelGames.FastIK
                     tHand[i].AplyArmePosAngle(wI[currentIDArme].GetTabHandPos(i), wI[currentIDArme].GetTabHandAngle(i));
                 }
             }
-            if(Input.GetKeyDown(KeyCode.F))
+        }
+        void Update()
+        {
+            if(!isLocalPlayer)
             {
-                currentIDArme = currentIDArme == 0 ? 1 : 0;
+                return;
             }
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                CmdChangeWeapon(currentIDArme == 0 ? 1 : 0);
+            }
+        }
+
+        [Command]
+        public void CmdChangeWeapon(int v)
+        {
+            currentIDArme = v;
         }
     }
 }

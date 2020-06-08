@@ -153,8 +153,6 @@ namespace DitzelGames.FastIK
 
                 for (int iteration = 0; iteration < Iterations; iteration++)
                 {
-                    //https://www.youtube.com/watch?v=UNoX65PRehA
-                    //back
                     for (int i = Positions.Length - 1; i > 0; i--)
                     {
                         if (i == Positions.Length - 1)
@@ -231,7 +229,7 @@ namespace DitzelGames.FastIK
                 current.rotation = Root.rotation * rotation;
         }
 
-        void OnDrawGizmos()
+/*        void OnDrawGizmos()
         {
 #if UNITY_EDITOR
             var current = this.transform;
@@ -246,5 +244,6 @@ namespace DitzelGames.FastIK
         }
 #endif
 
+        }*/
     }
 }

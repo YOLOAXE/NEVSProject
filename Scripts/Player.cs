@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
+
 namespace VHS
 {
-    public class Player : MonoBehaviour
+    public class Player : NetworkBehaviour
     {
         [SerializeField] private float noise = 0.1f;
         [SerializeField] private Animator anim = null;
@@ -13,6 +15,10 @@ namespace VHS
         
         void Update()
         {
+            if(!isLocalPlayer)
+            {
+                return;
+            }
             AplyAnimation();
         }
 
