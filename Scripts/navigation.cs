@@ -8,7 +8,7 @@ namespace VHS
     {
 
         [SerializeField] private GameObject[] path = new GameObject[4];
-        [SerializeField] private GameObject[] players = null;
+        [SerializeField] private List<GameObject> players = new List<GameObject>();
         [SerializeField] private NavMeshAgent agent = null;
         private int patrolTarget = 0;
         private GameObject target = null;
@@ -24,26 +24,7 @@ namespace VHS
         // Update is called once per frame
         void Update()
         {
-            if (!this.asTarget())
-            {
-                this.agent.isStopped = false;
-                this.patrol();
-            }
-            else
-            {
-                this.agent.isStopped = true;
-                Debug.Log(this.target);
-                if (this.isOnSight())
-                {
-                    Debug.Log("attaque");
-                    //attaque
-                }
-                else
-                {
-                    Debug.Log("chercher");
-                    this.find();
-                }
-            }
+            
         }
 
         private void patrol()
@@ -61,6 +42,14 @@ namespace VHS
             {
                 this.target = this.proximityCheck();
                 yield return new WaitForSeconds(0.5f);
+            }
+        }
+
+        IEnumerator getPlayer()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(10f);
             }
         }
 
