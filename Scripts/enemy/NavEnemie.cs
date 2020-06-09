@@ -2,28 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Mirror;
+
 namespace VHS
 {
-    public class navigation : MonoBehaviour
+    public class NavEnemie : NetworkBehaviour
     {
 
         [SerializeField] private GameObject[] path = new GameObject[4];
-        [SerializeField] private List<GameObject> players = new List<GameObject>();
+        [SerializeField] private GameObject[] players = null;
         [SerializeField] private NavMeshAgent agent = null;
         private int patrolTarget = 0;
         private GameObject target = null;
         [SerializeField] private float targetingRange = 10f;
         [SerializeField] private LayerMask lm = 0;
-        // Start is called before the first frame update
+
         void Start()
         {
+            if (!isServer) { return; }
             agent.SetDestination(path[this.patrolTarget].transform.position);
             StartCoroutine(viewUpdate());
         }
 
-        // Update is called once per frame
+
         void Update()
         {
+            if(!isServer){return;}
+            //code IA
             
         }
 
@@ -45,41 +50,41 @@ namespace VHS
             }
         }
 
-        IEnumerator getPlayer()
+        public void setPLayers(GameObject[] allPlayer)
         {
-            while (true)
-            {
-                yield return new WaitForSeconds(10f);
-            }
+            this.players = allPlayer;
         }
 
         private GameObject proximityCheck()
         {
-
-            float actualRange = Vector3.Distance(this.transform.position, this.players[0].transform.position) / this.players[0].GetComponent<Player>().getNoise();
-            float range = 0;
-            GameObject potentialTarget = this.players[0];
-
-            foreach (GameObject player in players)
+            if (this.players.Length > 0)
             {
-                range = Vector3.Distance(this.transform.position, player.transform.position) / player.GetComponent<Player>().getNoise();
-                if (actualRange > range)
-                {
+                float actualRange = Vector3.Distance(this.transform.position, this.players[0].transform.position) / this.players[0].GetComponent<Player>().getNoise();
+                float range = 0;
+                GameObject potentialTarget = this.players[0];
 
-                    actualRange = range;
-                    potentialTarget = player;
+                foreach (GameObject player in players)
+                {
+                    range = Vector3.Distance(this.transform.position, player.transform.position) / player.GetComponent<Player>().getNoise();
+                    if (actualRange > range)
+                    {
+
+                        actualRange = range;
+                        potentialTarget = player;
+                    }
+                }
+                Debug.Log(Vector3.Distance(this.transform.position, potentialTarget.transform.position));
+
+                if (actualRange <= this.targetingRange)
+                {
+                    return potentialTarget;
+                }
+                else
+                {
+                    return null;
                 }
             }
-            Debug.Log(Vector3.Distance(this.transform.position, potentialTarget.transform.position));
-
-            if (actualRange <= this.targetingRange)
-            {
-                return potentialTarget;
-            }
-            else
-            {
-                return null;
-            }
+            return null;
         }
 
         private bool asTarget()
