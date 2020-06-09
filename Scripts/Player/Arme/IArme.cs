@@ -2,17 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IArme : MonoBehaviour
+public interface IArme 
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
