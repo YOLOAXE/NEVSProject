@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3556173945446758328}
   - component: {fileID: 1994234451133648511}
+  - component: {fileID: 5897552757680191974}
+  - component: {fileID: 6118827888434953241}
   m_Layer: 0
   m_Name: soldier
   m_TagString: Untagged
@@ -68,6 +70,202 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5897552757680191974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78415433107676643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d553215846fefdc4e97d5224fb14569b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_audioSource: {fileID: 6118827888434953241}
+  acst:
+  - tagName: Untagged
+    stepSound:
+    - {fileID: 8300000, guid: 3c658ce97a715304a8d008b6d4b33fba, type: 3}
+    - {fileID: 8300000, guid: eb1bf1fb23e39364d82dac7024c28419, type: 3}
+    - {fileID: 8300000, guid: 0e217f8ad69f42d428e8f2ef51527437, type: 3}
+    - {fileID: 8300000, guid: ea948fb7f30cb184b8b85a1fcb3eba59, type: 3}
+  - tagName: metal
+    stepSound:
+    - {fileID: 8300000, guid: 22fd99ad9764748459c360765644b57e, type: 3}
+    - {fileID: 8300000, guid: 7d1f874cf81685942aaba56ac1ba3f30, type: 3}
+    - {fileID: 8300000, guid: c79b904bd5af9994f8fbafa81ca7d07f, type: 3}
+    - {fileID: 8300000, guid: 4b294111e8f0e234cb49570c23af2352, type: 3}
+  - tagName: bois
+    stepSound:
+    - {fileID: 8300000, guid: 46100fda67d57774b93da415dd7c9e4f, type: 3}
+    - {fileID: 8300000, guid: 64508016c866a4e4a8ab0f5b020e5836, type: 3}
+    - {fileID: 8300000, guid: ebefe735b9b904d4dab6e70b96f6f263, type: 3}
+    - {fileID: 8300000, guid: 72b4382cae039794bb0dd0df6fb3e292, type: 3}
+    - {fileID: 8300000, guid: af08ef3832215854f9bdaf450911ee8d, type: 3}
+    - {fileID: 8300000, guid: f8d171ce8bbdbab4bb4728814885a4a5, type: 3}
+  - tagName: boue
+    stepSound:
+    - {fileID: 8300000, guid: 7800f7bda4bc68f43a86d88827cd082a, type: 3}
+    - {fileID: 8300000, guid: c7449f353fcce324787a755ffee82b68, type: 3}
+    - {fileID: 8300000, guid: 62ac9bf37e313514e81b24534d632d69, type: 3}
+    - {fileID: 8300000, guid: de00eccdf54c99c40b5bd4bddfb8502c, type: 3}
+  - tagName: terre
+    stepSound:
+    - {fileID: 8300000, guid: 0056868aff218604e8b0c859b2f72e32, type: 3}
+    - {fileID: 8300000, guid: 8d93736d3c6baf341bc47a2953f63663, type: 3}
+    - {fileID: 8300000, guid: 129839f36797c2f4a809fb4b7046e7a4, type: 3}
+    - {fileID: 8300000, guid: 5443e371be091954f8902a4fc731c903, type: 3}
+  - tagName: herbe
+    stepSound:
+    - {fileID: 8300000, guid: 18f1ff003e8fbdb44aba8266f6e1d168, type: 3}
+    - {fileID: 8300000, guid: 59cd085e234f32e4daddd2e589174a96, type: 3}
+    - {fileID: 8300000, guid: 2f96d3d47551ed848be9307342dcd667, type: 3}
+    - {fileID: 8300000, guid: 4901040e735fd2547870b06a27124c49, type: 3}
+    - {fileID: 8300000, guid: 4dcd8f2dc477f5e4aa277ee503048ee8, type: 3}
+    - {fileID: 8300000, guid: 15b220b1b01e9d8469f3b754b8eb2a10, type: 3}
+    - {fileID: 8300000, guid: 79a7606463e6a0748b531715f315489d, type: 3}
+    - {fileID: 8300000, guid: aa859614ff9b2234e8547d93e1cd9e73, type: 3}
+  - tagName: pierre
+    stepSound:
+    - {fileID: 8300000, guid: 20d2d7095a3b13c43baf263091e3a359, type: 3}
+    - {fileID: 8300000, guid: 860f1173a910ecd45bc17ddefecfd75f, type: 3}
+    - {fileID: 8300000, guid: f3e564ab55b5ba24d824b7ca71950c73, type: 3}
+    - {fileID: 8300000, guid: 804ccf0daf6961c44be50e798ad6aec4, type: 3}
+  - tagName: sable
+    stepSound:
+    - {fileID: 8300000, guid: 9a1920c5613638641bcfa85361bf7ccc, type: 3}
+    - {fileID: 8300000, guid: 35cc1091df2b3c54eb0f806571bcb129, type: 3}
+    - {fileID: 8300000, guid: db02ef7fae7a9d4479f44f34bd634ee9, type: 3}
+    - {fileID: 8300000, guid: 01cdb7ecfed7f174390c829d07c9ff9f, type: 3}
+    - {fileID: 8300000, guid: 9ad319987835e994bb5a91bf5dbfff28, type: 3}
+  jump: {fileID: 8300000, guid: 21629f643fd686d45a2e9b9d513eb290, type: 3}
+  lm:
+    serializedVersion: 2
+    m_Bits: 311
+--- !u!82 &6118827888434953241
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78415433107676643}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.015
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.1
+      value: 1
+      inSlope: -10.0039835
+      outSlope: -10.0039835
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.2
+      value: 0.5
+      inSlope: -2.5009959
+      outSlope: -2.5009959
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.4
+      value: 0.25
+      inSlope: -0.62524897
+      outSlope: -0.62524897
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.6854065
+      value: 0.094329834
+      inSlope: -0.5128274
+      outSlope: -0.5128274
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.37088117
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.10003988
+      outSlope: -0.10003988
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &131536949532201693
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneId: 2412427983
+  sceneId: 0
   serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
@@ -550,7 +748,6 @@ MonoBehaviour:
   noise: 0.1
   anim: {fileID: 1994234451133648511}
   controller: {fileID: 606047143229114037}
-  timeAplyIsGrounded: 0.15
 --- !u!114 &4685512586169912352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,8 +776,8 @@ MonoBehaviour:
     handAngle:
     - {x: 0, y: 0, z: 0}
     - {x: 0, y: 0, z: 0}
+    anim: {fileID: 0}
     freeHand: 0101
-    AnimationHand: 
   - Name: Lampe Torche
     idArme: 1
     handPos:
@@ -589,8 +786,8 @@ MonoBehaviour:
     handAngle:
     - {x: 0, y: 0, z: 0}
     - {x: 100, y: -180, z: 0}
+    anim: {fileID: 0}
     freeHand: 0100
-    AnimationHand: 
   currentIDArme: 0
   pivotCamera: {fileID: 7688250534705561674}
   turnHandObject: {fileID: 655985185173119321}

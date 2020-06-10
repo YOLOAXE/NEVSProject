@@ -73,7 +73,7 @@ namespace VHS
                         potentialTarget = player;
                     }
                 }
-                Debug.Log(Vector3.Distance(this.transform.position, potentialTarget.transform.position));
+                //Debug.Log(Vector3.Distance(this.transform.position, potentialTarget.transform.position));
 
                 if (actualRange <= this.targetingRange)
                 {

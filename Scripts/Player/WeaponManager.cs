@@ -40,8 +40,8 @@ namespace DitzelGames.FastIK
         [SerializeField] private int idArme = 0;
         [SerializeField] private Vector3[] handPos = null;
         [SerializeField] private Vector3[] handAngle = null;
+        [SerializeField] private Animator anim = null;
         [SerializeField] private bool[] freeHand = null;
-        [SerializeField] private bool[] AnimationHand = null;
 
         public bool GetFreeHand(byte indice)
         {

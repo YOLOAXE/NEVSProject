@@ -10,8 +10,6 @@ namespace VHS
         [SerializeField] private float noise = 0.1f;
         [SerializeField] private Animator anim = null;
         [SerializeField] private CharacterController controller = null;
-        [SerializeField] private float timeAplyIsGrounded = 0.1f;
-        private float varTAIG = 0;
         
         void Update()
         {
@@ -27,11 +25,8 @@ namespace VHS
             anim.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
             anim.SetFloat("Vertical", Input.GetAxis("Vertical") * (Input.GetButton("Sprint") ? 2f : 1f));
             noise = ((Mathf.Abs(Input.GetAxis("Horizontal")) + Mathf.Abs(Input.GetAxis("Vertical"))) * (Input.GetButtonDown("Sprint") ? 1f : 2f)) + 0.1f;
-            if (!controller.isGrounded)
-            { varTAIG -= Time.deltaTime; }
-            else
-            { varTAIG = timeAplyIsGrounded; }
-            anim.SetBool("jump", varTAIG >= 0);
+            //le noise est a revoir
+            anim.SetBool("jump", controller.isGrounded && !Input.GetButton("Jump"));
         }
 
         public float getNoise()

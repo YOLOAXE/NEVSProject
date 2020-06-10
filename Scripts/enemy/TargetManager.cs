@@ -19,6 +19,10 @@ public class TargetManager : NetworkBehaviour
         }
     }
 
+    public virtual void OnServerAddPlayer(NetworkConnection conn, AddPlayerMessage extraMessage)
+    {
+        Debug.Log("test");
+    }
     IEnumerator targetsUpdate()
     {
         while (true)
