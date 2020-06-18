@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 [System.Serializable]
 public class audioClipStepTag
@@ -23,7 +24,7 @@ public class audioClipStepTag
     }
 };
 
-public class FootStepSound : MonoBehaviour
+public class FootStepSound : NetworkBehaviour
 {
     [SerializeField] private AudioSource m_audioSource = null;
     [SerializeField] private audioClipStepTag[] acst = null;
