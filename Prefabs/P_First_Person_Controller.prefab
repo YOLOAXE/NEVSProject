@@ -480,13 +480,16 @@ MonoBehaviour:
   - Name: Main Libre
     idArme: 0
     freeHand: 0101
-    arme: {fileID: 0}
+    arme: {fileID: 7803260541671624669}
   - Name: Lampe Torche
     idArme: 1
     freeHand: 0100
     arme: {fileID: 0}
   pivotCam: {fileID: 7337787720274498183}
   handObject: {fileID: 467722495224705940}
+  handAnimator: {fileID: 656956183755886112}
+  m_audioSource: {fileID: 0}
+  clipChangeArme: {fileID: 0}
   currentIDArme: 0
 --- !u!114 &5275191263767026462
 MonoBehaviour:
@@ -3384,7 +3387,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5661211765740117555}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3758,7 +3761,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6104073298533519072}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.47, z: -0.009999802}
+  m_LocalPosition: {x: 0, y: -1.46, z: 0}
   m_LocalScale: {x: 1.0655057, y: 0.89044476, z: 0.8904444}
   m_Children:
   - {fileID: 7377605879934662718}
@@ -4203,7 +4206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6741715622955417000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.007, y: 0.962, z: 0.048}
+  m_LocalPosition: {x: 0.007, y: 0.962, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children:
   - {fileID: 3045914457311069020}
@@ -4786,9 +4789,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7803260541671624669}
-  m_LocalRotation: {x: -0.5838849, y: 0.4073641, z: 0.39987874, w: 0.5772607}
-  m_LocalPosition: {x: -0.040001098, y: 0.06400148, z: 0.037988286}
-  m_LocalScale: {x: 1.1902009, y: 1.190202, z: 1.1902015}
+  m_LocalRotation: {x: -0.5089698, y: 0.4486773, z: 0.5642584, w: 0.47037312}
+  m_LocalPosition: {x: -0.04000085, y: 0.06400166, z: 0.037988164}
+  m_LocalScale: {x: 1.1902004, y: 1.190202, z: 1.1902015}
   m_Children:
   - {fileID: 7803260541671935781}
   - {fileID: 7803260541671896215}
@@ -4796,7 +4799,7 @@ Transform:
   - {fileID: 7803260541671955773}
   m_Father: {fileID: 1668387530040717984}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: -89.19, y: -193.685, z: 263.3}
+  m_LocalEulerAnglesHint: {x: -80.114006, y: -62.5, z: 154.432}
 --- !u!1 &7803260541671688421
 GameObject:
   m_ObjectHideFlags: 0
@@ -5369,7 +5372,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8322124694124955920}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

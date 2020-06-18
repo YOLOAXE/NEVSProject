@@ -39,6 +39,11 @@ namespace DitzelGames.FastIK
                 arme.SetActive(state);
             }
         }
+
+        public int getId()
+        {
+            return this.idArme;
+        }
     }
 
     public class WeaponManager : NetworkBehaviour
@@ -47,6 +52,9 @@ namespace DitzelGames.FastIK
         [SerializeField] private WeaponInfo[] wI = null;
         [SerializeField] private GameObject pivotCam = null;
         [SerializeField] private GameObject handObject = null;
+        [SerializeField] private Animator handAnimator = null;
+        [SerializeField] private AudioSource m_audioSource = null;
+        [SerializeField] private AudioClip clipChangeArme = null;
         [SyncVar] public int currentIDArme = 0;
 
 
@@ -65,7 +73,7 @@ namespace DitzelGames.FastIK
             }
             if (Input.GetKeyDown(KeyCode.F))
             {
-                CmdChangeWeapon(currentIDArme == 0 ? 1 : 0);
+                CmdChangeWeapon(++currentIDArme%wI.Length);
             }
             handObject.transform.eulerAngles = pivotCam.transform.eulerAngles;
         }
@@ -75,8 +83,15 @@ namespace DitzelGames.FastIK
         {
             for(byte i = 0; i < wI.Length;i++)
             {
-                wI[i].SpawnObject(i == v);
+                wI[i].SpawnObject(i != v);
             }
+            if (m_audioSource && clipChangeArme)
+            {
+                m_audioSource.clip = clipChangeArme;
+                m_audioSource.PlayOneShot(m_audioSource.clip);
+            }
+            handAnimator.SetInteger("id", v);
+            handAnimator.Play("idelHand", 0, 0.25f);
             currentIDArme = v;
         }
     }
