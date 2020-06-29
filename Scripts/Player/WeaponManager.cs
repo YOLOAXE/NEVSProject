@@ -26,6 +26,7 @@ namespace DitzelGames.FastIK
         [SerializeField] private int idArme = 0;
         [SerializeField] private bool[] freeHand = null;
         [SerializeField] private GameObject arme = null;
+        [SerializeField] private AArme a_scriptArme = null;
 
         public bool GetFreeHand(byte indice)
         {
@@ -44,12 +45,22 @@ namespace DitzelGames.FastIK
         {
             return this.idArme;
         }
+
+        public AArme getArmeScript()
+        {
+            return this.a_scriptArme;
+        }
+        public GameObject getArme()
+        {
+            return this.arme;
+        }
     }
 
     public class WeaponManager : NetworkBehaviour
     {
         [SerializeField] private Hand[] tHand = null;
         [SerializeField] private WeaponInfo[] wI = null;
+        [Header("WeaponSetting")]
         [SerializeField] private GameObject pivotCam = null;
         [SerializeField] private GameObject handObject = null;
         [SerializeField] private Animator handAnimator = null;
@@ -57,6 +68,18 @@ namespace DitzelGames.FastIK
         [SerializeField] private AudioClip clipChangeArme = null;
         [SyncVar] public int currentIDArme = 0;
 
+        public override void OnStartLocalPlayer()
+        {
+            /*foreach (WeaponInfo w in wI)
+            {
+                if (w.getArme())
+                {
+
+                }
+            }*/
+            Debug.Log(wI[2].getArme().GetComponent<NetworkIdentity>());
+            //CmdAssignAuthority(wI[2].getArme().GetComponent<NetworkIdentity>());
+        }
 
         void LateUpdate()
         {
@@ -65,34 +88,48 @@ namespace DitzelGames.FastIK
                 tHand[i].AplyAnimation(wI[currentIDArme].GetFreeHand(i));
             }
         }
+
         void Update()
         {
-            if(!isLocalPlayer)
+            if (!isLocalPlayer) { return; }
+            if (Input.GetButton("Fire1"))
             {
-                return;
+                StartCoroutine(wI[currentIDArme].getArmeScript().shoot());
+            }
+            if (Input.GetButton("Reload"))
+            {
+                StartCoroutine(wI[currentIDArme].getArmeScript().reload());
             }
             if (Input.GetKeyDown(KeyCode.F))
             {
-                CmdChangeWeapon(++currentIDArme%wI.Length);
+                CmdChangeWeapon(++currentIDArme % wI.Length);
             }
+            handAnimator.SetBool("Aim", Input.GetButton("Fire2"));
             handObject.transform.eulerAngles = pivotCam.transform.eulerAngles;
         }
 
         [Command]
-        public void CmdChangeWeapon(int v)
+        private void CmdChangeWeapon(int v)
         {
-            for(byte i = 0; i < wI.Length;i++)
+            for (byte i = 0; i < wI.Length; i++)
             {
-                wI[i].SpawnObject(i != v);
+                wI[i].SpawnObject(i == v);
             }
             if (m_audioSource && clipChangeArme)
             {
                 m_audioSource.clip = clipChangeArme;
                 m_audioSource.PlayOneShot(m_audioSource.clip);
             }
+            handAnimator.SetBool("return", true);
             handAnimator.SetInteger("id", v);
-            handAnimator.Play("idelHand", 0, 0.25f);
             currentIDArme = v;
         }
+
+        [Command]
+        void CmdTire()
+        {
+
+        }
+
     }
 }
