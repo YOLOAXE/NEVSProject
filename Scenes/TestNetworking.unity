@@ -1906,7 +1906,12 @@ MonoBehaviour:
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 1
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 5650054183742655226, guid: 7b27ee34c5e07d2458b1de6edb1ac7c0, type: 3}
+  - {fileID: 8294419431911534479, guid: 5ed7791753efc3947acedb720a233572, type: 3}
+  - {fileID: 3278357233491715487, guid: d3ade19f4c9d0554c8e5df651aba72be, type: 3}
+  - {fileID: 8618722649989002377, guid: b31bf9c563ca15e4cada5e330b5b40c6, type: 3}
+  - {fileID: 5372301920774534718, guid: 2f18c4b4305a15d42b92f8b36922762d, type: 3}
   allPlayer: []
 --- !u!1 &3500275558193548436
 GameObject:

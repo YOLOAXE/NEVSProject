@@ -56,6 +56,23 @@ namespace DitzelGames.FastIK
         }
     }
 
+    [System.Serializable]
+    public class impactEffect
+    {
+        [SerializeField] private string tagName = "";
+        [SerializeField] private GameObject spawnImpact = null;
+
+        public string getTag()
+        {
+            return this.tagName;
+        }
+
+        public GameObject getImpact()
+        {
+            return this.spawnImpact;
+        }
+    }
+
     public class WeaponManager : NetworkBehaviour
     {
         [SerializeField] private Hand[] tHand = null;
@@ -67,19 +84,12 @@ namespace DitzelGames.FastIK
         [SerializeField] private AudioSource m_audioSource = null;
         [SerializeField] private AudioClip clipChangeArme = null;
         [SyncVar] public int currentIDArme = 0;
+        [Header("GunEffect")]
+        [SerializeField] private impactEffect[] ie = null;
 
-        public override void OnStartLocalPlayer()
-        {
-            /*foreach (WeaponInfo w in wI)
-            {
-                if (w.getArme())
-                {
-
-                }
-            }*/
-            Debug.Log(wI[2].getArme().GetComponent<NetworkIdentity>());
-            //CmdAssignAuthority(wI[2].getArme().GetComponent<NetworkIdentity>());
-        }
+        #region Server System Callbacks
+        public override void OnStartLocalPlayer(){}
+        #endregion
 
         void LateUpdate()
         {
@@ -125,10 +135,22 @@ namespace DitzelGames.FastIK
             currentIDArme = v;
         }
 
-        [Command]
-        void CmdTire()
+        public GameObject getImpactByTag(string tag)
         {
+            foreach(impactEffect iE in ie)
+            {
+                if(iE.getTag() == tag)
+                {
+                    return iE.getImpact();
+                }
+            }
+            return ie[0].getImpact();
+        }
 
+        [Command]
+        public void CmdTire()
+        {
+            wI[currentIDArme].getArmeScript().CmdSendTire();
         }
 
     }
