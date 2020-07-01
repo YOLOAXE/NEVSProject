@@ -8,120 +8,69 @@ namespace VHS
 {
     public class NavEnemie : NetworkBehaviour
     {
-
-        [SerializeField] private GameObject[] path = new GameObject[4];
-        [SerializeField] private GameObject[] players = null;
+        [Header("EnemieInfo")]
         [SerializeField] private NavMeshAgent agent = null;
+        [SyncVar] public float currentHealth = 100.0f;
+        [SerializeField] private float maxHealth = 100.0f;
+
+        [Header("Deplacement")]       
+        [SerializeField] private List<GameObject> path = new List<GameObject>();
+        [SerializeField] private float chaseDistance = 30f;
+        [SerializeField] private float attaqueDistance = 15f;
         private int patrolTarget = 0;
         private GameObject target = null;
-        [SerializeField] private float targetingRange = 10f;
+
+        [Header("Combat")]
+        [SerializeField] private bool inFight = false;
+        [SerializeField] private GameObject targetPlayer = null;
+
+        [Header("Raycast")]
+        [SerializeField] private GameObject raycastPoint = null;
         [SerializeField] private LayerMask lm = 0;
+        private RaycastHit hit;
 
-        void Start()
-        {
-            if (!isServer) { return; }
-            agent.SetDestination(path[this.patrolTarget].transform.position);
-            StartCoroutine(viewUpdate());
-        }
-
+        #region Start & Stop Callbacks
 
         void Update()
         {
             if(!isServer){return;}
-            //code IA
-            
+            patrol();
         }
 
         private void patrol()
         {
-            if (Vector3.Distance(this.transform.position, this.path[this.patrolTarget].transform.position) < 2)
+            if (Vector3.Distance(this.transform.position, this.path[this.patrolTarget].transform.position) < 2 && !inFight)
             {
-                this.patrolTarget = (++this.patrolTarget) % path.Length;
+                this.patrolTarget = (++this.patrolTarget) % path.Count;
                 agent.SetDestination(path[this.patrolTarget].transform.position);
             }
         }
 
-        IEnumerator viewUpdate()
+        [ServerCallback]
+        void OnTriggerStay(Collider other)
         {
-            while (true)
+            if(other.transform.tag == "nlPlayer" || other.transform.tag == "player")
             {
-                this.target = this.proximityCheck();
-                yield return new WaitForSeconds(0.5f);
-            }
-        }
-
-        public void setPLayers(GameObject[] allPlayer)
-        {
-            this.players = allPlayer;
-        }
-
-        private GameObject proximityCheck()
-        {
-            if (this.players.Length > 0)
-            {
-                float actualRange = Vector3.Distance(this.transform.position, this.players[0].transform.position) / this.players[0].GetComponent<Player>().getNoise();
-                float range = 0;
-                GameObject potentialTarget = this.players[0];
-
-                foreach (GameObject player in players)
+                raycastPoint.transform.LookAt(other.transform);              
+                if (this.targetPlayer)
                 {
-                    range = Vector3.Distance(this.transform.position, player.transform.position) / player.GetComponent<Player>().getNoise();
-                    if (actualRange > range)
-                    {
-
-                        actualRange = range;
-                        potentialTarget = player;
-                    }
-                }
-                //Debug.Log(Vector3.Distance(this.transform.position, potentialTarget.transform.position));
-
-                if (actualRange <= this.targetingRange)
-                {
-                    return potentialTarget;
+                        
                 }
                 else
                 {
-                    return null;
-                }
-            }
-            return null;
-        }
 
-        private bool asTarget()
-        {
-            if (this.target == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
+                }
             }
         }
 
         private bool isOnSight()
         {
-            RaycastHit hit;
-            Vector3 fromPosition = this.transform.position;
-            Vector3 toPosition = this.target.transform.position;
-            Vector3 direction = toPosition - fromPosition;
-
-
-            if (Physics.Raycast(fromPosition, direction, out hit, Mathf.Infinity, lm))
+            if (Physics.Raycast(this.raycastPoint.transform.position, this.raycastPoint.transform.TransformDirection(Vector3.forward), out this.hit, Mathf.Infinity, lm))
             {
-                Debug.DrawLine(transform.position, hit.point, Color.yellow);
-                if (hit.collider.gameObject == this.target)
-                {
-                    return true;
-                }
+                return (hit.transform.tag == "nlPlayer" || hit.transform.tag == "player");
             }
             return false;
         }
-
-        private void find()
-        {
-            agent.isStopped = false;
-            agent.SetDestination(target.transform.position);
-        }
+        #endregion
     }
 }

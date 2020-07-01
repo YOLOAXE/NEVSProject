@@ -72,6 +72,7 @@ namespace DitzelGames.FastIK
 
         public override void CmdSendTire()
         {
+            bool tagAply = false;
             for (byte i = 0; i < this.balleparTire;i++)
             {
                 Vector3 direction = Random.insideUnitCircle * this.scale;
@@ -84,9 +85,15 @@ namespace DitzelGames.FastIK
                     {
                         if(ie[i].getTag() == hit.transform.tag)
                         {
-                          //  GameObject go = Instantiate(otherPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+                            GameObject io = Instantiate(ie[i].getImpact(), hit.point, Quaternion.identity);
+                            //GameObject go = Instantiate(otherPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
                             //NetworkServer.Spawn(go, connectionToClient);
+                            tagAply = true;
                         }
+                    }
+                    if(tagAply)
+                    {
+
                     }
                 }
             }
