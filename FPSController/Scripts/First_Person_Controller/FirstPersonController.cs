@@ -387,14 +387,14 @@ namespace VHS
                 }
                 else
                 {
-                    busteP.layer = LayerMask.NameToLayer("Default");
+                    busteP.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
                     anim.SetBool("acroupie", false);
                     StartCoroutine(crouchAnimeCR(0.5f, new Vector3(0.0f, 0.86f, 0.2f), new Vector3(0.0f, 1.46f, 0.2f)));
                 }
             }
             else
             {
-                busteP.layer = LayerMask.NameToLayer("DrawAlways");
+                busteP.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
                 anim.SetBool("acroupie", true);
                 StartCoroutine(crouchAnimeCR(0.5f, new Vector3(0.0f, 1.46f, 0.2f), new Vector3(0.0f, 0.86f, 0.2f)));
             }

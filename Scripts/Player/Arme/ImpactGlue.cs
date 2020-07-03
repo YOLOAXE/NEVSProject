@@ -6,13 +6,13 @@ public class ImpactGlue : NetworkBehaviour
 {
     [SerializeField] private float destroyAfter = 5;
     [SerializeField] private AudioSource m_audio = null;
-    [SerializeField] private AudioClip m_clip = null;
+    [SerializeField] private AudioClip[] m_clip = null;
 
     void Start()
     {
-        if(m_audio || m_clip)
+        if(m_audio)
         {
-            m_audio.clip = m_clip;
+            m_audio.clip = m_clip[Random.Range(0,m_clip.Length)];
             m_audio.PlayOneShot(m_audio.clip);
         }
     }

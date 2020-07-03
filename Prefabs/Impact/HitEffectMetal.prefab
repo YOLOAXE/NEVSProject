@@ -14003,7 +14003,8 @@ MonoBehaviour:
   syncInterval: 0.1
   destroyAfter: 5
   m_audio: {fileID: 2833635021659444098}
-  m_clip: {fileID: 0}
+  m_clip:
+  - {fileID: 8300000, guid: 89b4957f2e6ee4740adfdccd422b9262, type: 3}
 --- !u!82 &2833635021659444098
 AudioSource:
   m_ObjectHideFlags: 0

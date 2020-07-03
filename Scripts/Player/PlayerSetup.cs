@@ -33,7 +33,7 @@ public class PlayerSetup : NetworkBehaviour
             transform.tag = tagNamePlayer;
             foreach(GameObject o in dfObjectChange)
             {
-                o.layer = LayerMask.NameToLayer("DrawAlways");
+                o.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
             }
         }
     }

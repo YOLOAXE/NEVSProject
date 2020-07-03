@@ -83,7 +83,7 @@ namespace DitzelGames.FastIK
         [SerializeField] private Animator handAnimator = null;
         [SerializeField] private AudioSource m_audioSource = null;
         [SerializeField] private AudioClip clipChangeArme = null;
-        [SyncVar] public int currentIDArme = 0;
+        [SyncVar(hook = nameof(ChangeWeapon))] public int currentIDArme = 0;
         [Header("GunEffect")]
         [SerializeField] private impactEffect[] ie = null;
 
@@ -101,6 +101,7 @@ namespace DitzelGames.FastIK
 
         void Update()
         {
+            handObject.transform.eulerAngles = pivotCam.transform.eulerAngles;
             if (!isLocalPlayer) { return; }
             if (Input.GetButton("Fire1"))
             {
@@ -113,9 +114,9 @@ namespace DitzelGames.FastIK
             if (Input.GetKeyDown(KeyCode.F))
             {
                 CmdChangeWeapon(++currentIDArme % wI.Length);
+                handAnimator.SetInteger("id", currentIDArme);
             }
             handAnimator.SetBool("Aim", Input.GetButton("Fire2"));
-            handObject.transform.eulerAngles = pivotCam.transform.eulerAngles;
         }
 
         [Command]
@@ -130,9 +131,22 @@ namespace DitzelGames.FastIK
                 m_audioSource.clip = clipChangeArme;
                 m_audioSource.PlayOneShot(m_audioSource.clip);
             }
-            handAnimator.SetBool("return", true);
-            handAnimator.SetInteger("id", v);
+            handAnimator.Rebind();
             currentIDArme = v;
+        }
+
+        private void ChangeWeapon(int oldID,int newID)
+        {
+            for (byte i = 0; i < wI.Length; i++)
+            {
+                wI[i].SpawnObject(i == newID);
+            }
+            if (m_audioSource && clipChangeArme)
+            {
+                m_audioSource.clip = clipChangeArme;
+                m_audioSource.PlayOneShot(m_audioSource.clip);
+            }
+            handAnimator.Rebind();
         }
 
         public GameObject getImpactByTag(string tag)
@@ -153,5 +167,10 @@ namespace DitzelGames.FastIK
             wI[currentIDArme].getArmeScript().CmdSendTire();
         }
 
+        [Command]
+        public void CmdReload()
+        {
+            StartCoroutine(wI[currentIDArme].getArmeScript().CmdSendReload());
+        }
     }
 }

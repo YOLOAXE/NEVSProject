@@ -10,9 +10,10 @@ namespace DitzelGames.FastIK
         [Header("Arme Setting")]
         [SerializeField] private Animator m_animator = null;
         [SerializeField] [SyncVar] private int currentMunition = 0;
-        [SerializeField] [SyncVar] private int chargeurMunition = 0;
+        [SerializeField] [SyncVar(hook = nameof(OnChangeChargeur))] private int chargeurMunition = 0;
         [SerializeField] private int maxMunition = 0;
         [SerializeField] private float shootRate = 0.8f;
+        [SerializeField] private float reloadTimeParDouille = 0.8f; 
         [Header("Arme Raycast")]
         [SerializeField] private LayerMask layerImpactDegat = 0;
         [SerializeField] private float hitForceTire = 0;
@@ -48,18 +49,18 @@ namespace DitzelGames.FastIK
 
         public override IEnumerator reload()
         {
-            if (!isReload)
+            if (this.chargeurMunition > 0 && this.currentMunition < this.maxMunition && !isReload)
             {
                 isReload = true;
-                yield return null;
-                isReload = false;
+                m_animator.SetBool("reload", true);
+                base.wM.CmdReload();
             }
             yield return null;
         }
 
         public override void CmdSendTire()
         {
-            if (currentMunition > 0)
+            if (currentMunition > 0 && !isReload)
             {
                 for (byte i = 0; i < this.balleparTire; i++)
                 {
@@ -70,10 +71,37 @@ namespace DitzelGames.FastIK
                     if (Physics.Raycast(this.ray, out hit, Mathf.Infinity, this.layerImpactDegat))
                     {
                         GameObject io = Instantiate(base.wM.getImpactByTag(hit.transform.tag), hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                        io.transform.parent = hit.transform;
+                        if (hit.rigidbody)
+                        {
+                            hit.rigidbody.AddForce(this.ray.direction * hitForceTire);
+                        }
                         NetworkServer.Spawn(io);
                     }
                 }
                 this.currentMunition--;
+            }
+        }
+
+        public override IEnumerator CmdSendReload()
+        {
+            isReload = true;
+            for (int i = 0; i < this.maxMunition && this.chargeurMunition > 0 && this.currentMunition < this.maxMunition; i++)
+            {
+                yield return new WaitForSeconds(reloadTimeParDouille);
+                this.currentMunition++;
+                this.chargeurMunition--;
+            }
+            yield return new WaitForSeconds(reloadTimeParDouille);
+            isReload = false;
+        }
+
+        private void OnChangeChargeur(int newCC,int oldCC)
+        {
+            if (this.chargeurMunition == 0 || this.currentMunition == this.maxMunition)
+            {
+                this.isReload = false;
+                m_animator.SetBool("reload", false);
             }
         }
     }
