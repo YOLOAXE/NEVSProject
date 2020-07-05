@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using TMPro;
 
 namespace DitzelGames.FastIK
 {
@@ -86,6 +87,9 @@ namespace DitzelGames.FastIK
         [SyncVar(hook = nameof(ChangeWeapon))] public int currentIDArme = 0;
         [Header("GunEffect")]
         [SerializeField] private impactEffect[] ie = null;
+        [SerializeField] private CameraShake cShake = null;
+        [Header("GunUI")]
+        [SerializeField] private TextMeshPro textMun = null;
 
         #region Server System Callbacks
         public override void OnStartLocalPlayer(){}
@@ -113,18 +117,18 @@ namespace DitzelGames.FastIK
             }
             if (Input.GetKeyDown(KeyCode.F))
             {
-                CmdChangeWeapon(++currentIDArme % wI.Length);
-                handAnimator.SetInteger("id", currentIDArme);
+                CmdChangeWeapon();
             }
             handAnimator.SetBool("Aim", Input.GetButton("Fire2"));
         }
 
         [Command]
-        private void CmdChangeWeapon(int v)
+        private void CmdChangeWeapon()
         {
+            this.currentIDArme = ((this.currentIDArme + 1)%wI.Length);
             for (byte i = 0; i < wI.Length; i++)
             {
-                wI[i].SpawnObject(i == v);
+                wI[i].SpawnObject(i == this.currentIDArme);
             }
             if (m_audioSource && clipChangeArme)
             {
@@ -132,7 +136,7 @@ namespace DitzelGames.FastIK
                 m_audioSource.PlayOneShot(m_audioSource.clip);
             }
             handAnimator.Rebind();
-            currentIDArme = v;
+            handAnimator.SetInteger("id", this.currentIDArme);
         }
 
         private void ChangeWeapon(int oldID,int newID)
@@ -146,7 +150,9 @@ namespace DitzelGames.FastIK
                 m_audioSource.clip = clipChangeArme;
                 m_audioSource.PlayOneShot(m_audioSource.clip);
             }
+            this.currentIDArme = newID;
             handAnimator.Rebind();
+            handAnimator.SetInteger("id", this.currentIDArme);
         }
 
         public GameObject getImpactByTag(string tag)
@@ -171,6 +177,11 @@ namespace DitzelGames.FastIK
         public void CmdReload()
         {
             StartCoroutine(wI[currentIDArme].getArmeScript().CmdSendReload());
+        }
+
+        public void StartcShake(float duration,float magnitude)
+        {
+            StartCoroutine(this.cShake.Shake(duration, magnitude));
         }
     }
 }

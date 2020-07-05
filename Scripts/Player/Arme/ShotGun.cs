@@ -13,7 +13,9 @@ namespace DitzelGames.FastIK
         [SerializeField] [SyncVar(hook = nameof(OnChangeChargeur))] private int chargeurMunition = 0;
         [SerializeField] private int maxMunition = 0;
         [SerializeField] private float shootRate = 0.8f;
-        [SerializeField] private float reloadTimeParDouille = 0.8f; 
+        [SerializeField] private float reloadTimeParDouille = 0.8f;
+        [SerializeField] private float magnitudeShakeShoot = 0.1f;
+        [SerializeField] private float timeShakeShoot = 0.5f;
         [Header("Arme Raycast")]
         [SerializeField] private LayerMask layerImpactDegat = 0;
         [SerializeField] private float hitForceTire = 0;
@@ -34,15 +36,16 @@ namespace DitzelGames.FastIK
                 if (!isShoot && !isReload && Input.GetButtonDown("Fire1"))
                 {
                     isShoot = true;
-                    m_animator.SetBool("shootOneShot", true);
+                    base.netAnim.SetTrigger("shootOneShot");
                     base.wM.CmdTire();
+                    base.wM.StartcShake(this.magnitudeShakeShoot, this.timeShakeShoot);
                     yield return new WaitForSeconds(this.shootRate);
                     isShoot = false;
                 }
             }
             else if(Input.GetButtonDown("Fire1"))
             {
-                m_animator.SetBool("noAmmo", true);
+                base.netAnim.SetTrigger("noAmmo");
             }
             yield return null;
         }
@@ -71,7 +74,7 @@ namespace DitzelGames.FastIK
                     if (Physics.Raycast(this.ray, out hit, Mathf.Infinity, this.layerImpactDegat))
                     {
                         GameObject io = Instantiate(base.wM.getImpactByTag(hit.transform.tag), hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
-                        io.transform.parent = hit.transform;
+                        //io.transform.parent = hit.transform;
                         if (hit.rigidbody)
                         {
                             hit.rigidbody.AddForce(this.ray.direction * hitForceTire);
