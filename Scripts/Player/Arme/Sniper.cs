@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Mirror;
 
 namespace DitzelGames.FastIK
 {
-    public class ShotGun : AArme
+    public class Sniper : AArme
     {
         [Header("Arme Setting")]
         [SerializeField] private Animator m_animator = null;
@@ -19,15 +20,24 @@ namespace DitzelGames.FastIK
         [Header("Arme Raycast")]
         [SerializeField] private LayerMask layerImpactDegat = 0;
         [SerializeField] private float hitForceTire = 0;
-        [SerializeField] private int balleparTire = 10;
         [SerializeField] private float degatParBalle = 10.0f;
         [SerializeField] private float Z = 10;
         [SerializeField] private float scale = 0.1f;
-        [SerializeField] private GameObject targetCamera = null;
         private RaycastHit hit;
         private Ray ray;
         private bool isShoot = false;
         private bool isReload = false;
+        [Header("ArmeAIM")]
+        [SerializeField] private GameObject cameraAIM = null;
+        [SerializeField] private GameObject ScopeOverlay = null;
+        [SerializeField] private bool bAim = false;
+        private float timeToAim = 0.3f;
+
+        public override void OnSelectWeapon()
+        {
+            ScopeOverlay = GameObject.Find("AimScopeOverlay");
+            base.wM.SetTextMun(this.currentMunition.ToString() + "/" + this.chargeurMunition.ToString());
+        }
 
         public override IEnumerator shoot()
         {
@@ -43,7 +53,7 @@ namespace DitzelGames.FastIK
                     isShoot = false;
                 }
             }
-            else if(Input.GetButtonDown("Fire1"))
+            else if (Input.GetButtonDown("Fire1"))
             {
                 base.netAnim.SetTrigger("noAmmo");
             }
@@ -65,22 +75,19 @@ namespace DitzelGames.FastIK
         {
             if (currentMunition > 0 && !isReload)
             {
-                for (byte i = 0; i < this.balleparTire; i++)
+                Vector3 direction = Random.insideUnitCircle * this.scale;
+                direction.z = this.Z;
+                direction = this.cameraAIM.transform.TransformDirection(direction.normalized);
+                this.ray = new Ray(this.cameraAIM.transform.position, direction);
+                if (Physics.Raycast(this.ray, out hit, Mathf.Infinity, this.layerImpactDegat))
                 {
-                    Vector3 direction = Random.insideUnitCircle * this.scale;
-                    direction.z = this.Z;
-                    direction = this.targetCamera.transform.TransformDirection(direction.normalized);
-                    this.ray = new Ray(this.targetCamera.transform.position, direction);
-                    if (Physics.Raycast(this.ray, out hit, Mathf.Infinity, this.layerImpactDegat))
+                    GameObject io = Instantiate(base.wM.getImpactByTag(hit.transform.tag), hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                    //io.transform.parent = hit.transform;
+                    if (hit.rigidbody)
                     {
-                        GameObject io = Instantiate(base.wM.getImpactByTag(hit.transform.tag), hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
-                        //io.transform.parent = hit.transform;
-                        if (hit.rigidbody)
-                        {
-                            hit.rigidbody.AddForce(this.ray.direction * hitForceTire);
-                        }
-                        NetworkServer.Spawn(io);
+                        hit.rigidbody.AddForce(this.ray.direction * hitForceTire);
                     }
+                    NetworkServer.Spawn(io);
                 }
                 this.currentMunition--;
             }
@@ -99,7 +106,7 @@ namespace DitzelGames.FastIK
             isReload = false;
         }
 
-        private void OnChangeChargeur(int newCC,int oldCC)
+        private void OnChangeChargeur(int newCC, int oldCC)
         {
             base.wM.SetTextMun(this.currentMunition.ToString() + "/" + this.chargeurMunition.ToString());
             if (this.chargeurMunition == 0 || this.currentMunition == this.maxMunition)
@@ -109,19 +116,41 @@ namespace DitzelGames.FastIK
             }
         }
 
-        private void OnChangeMunition(int newCM,int oldCM)
+        private void OnChangeMunition(int newCM, int oldCM)
         {
             base.wM.SetTextMun(this.currentMunition.ToString() + "/" + this.chargeurMunition.ToString());
         }
 
-        public override void OnSelectWeapon()
+        public override void AimArme(bool state)
         {
-            base.wM.SetTextMun(this.currentMunition.ToString() + "/" + this.chargeurMunition.ToString());
+            if(this.bAim != state)
+            {
+                timeToAim = 0.3f;
+            }
+            this.bAim = state;
+            if (timeToAim > 0 && this.bAim || this.isReload)
+            {
+                timeToAim -= Time.deltaTime;
+            }
+            else
+            {
+                cameraAIM.SetActive(this.bAim);
+                if (ScopeOverlay)
+                {
+                    ScopeOverlay.GetComponent<Image>().enabled = this.bAim;
+                }
+            }
         }
 
         public override void OnChangeWeapon()
         {
+            this.bAim = false;
+            cameraAIM.SetActive(this.bAim);
             base.wM.SetTextMun("");
+            if (ScopeOverlay)
+            {
+                ScopeOverlay.GetComponent<Image>().enabled = false;
+            }
         }
     }
 }

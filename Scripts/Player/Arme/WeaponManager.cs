@@ -89,10 +89,13 @@ namespace DitzelGames.FastIK
         [SerializeField] private impactEffect[] ie = null;
         [SerializeField] private CameraShake cShake = null;
         [Header("GunUI")]
-        [SerializeField] private TextMeshPro textMun = null;
+        [SerializeField] private TextMeshProUGUI textMun = null;
 
         #region Server System Callbacks
-        public override void OnStartLocalPlayer(){}
+        public override void OnStartLocalPlayer()
+        {
+            textMun = GameObject.Find("TMPMunition").GetComponent<TextMeshProUGUI>();
+        }
         #endregion
 
         void LateUpdate()
@@ -115,9 +118,12 @@ namespace DitzelGames.FastIK
             {
                 StartCoroutine(wI[currentIDArme].getArmeScript().reload());
             }
+            wI[this.currentIDArme].getArmeScript().AimArme(Input.GetButton("Fire2"));
             if (Input.GetKeyDown(KeyCode.F))
             {
+                wI[this.currentIDArme].getArmeScript().OnChangeWeapon();
                 CmdChangeWeapon();
+                wI[this.currentIDArme].getArmeScript().OnSelectWeapon();
             }
             handAnimator.SetBool("Aim", Input.GetButton("Fire2"));
         }
@@ -177,6 +183,11 @@ namespace DitzelGames.FastIK
         public void CmdReload()
         {
             StartCoroutine(wI[currentIDArme].getArmeScript().CmdSendReload());
+        }
+
+        public void SetTextMun(string txt)
+        {
+            textMun.text = txt;
         }
 
         public void StartcShake(float duration,float magnitude)
