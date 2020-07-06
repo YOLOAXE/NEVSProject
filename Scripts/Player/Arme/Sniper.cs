@@ -108,7 +108,6 @@ namespace DitzelGames.FastIK
 
         private void OnChangeChargeur(int oldCC, int newCC)
         {
-            this.chargeurMunition = newCC;
             base.wM.SetTextMun(this.currentMunition.ToString() + "/" + this.chargeurMunition.ToString());
             if (this.chargeurMunition == 0 || this.currentMunition == this.maxMunition)
             {
@@ -120,8 +119,6 @@ namespace DitzelGames.FastIK
 
         private void OnChangeMunition(int oldCM, int newCM)
         {
-            Debug.Log(oldCM.ToString() + " / " + newCM.ToString());
-            this.currentMunition = newCM;
             base.wM.SetTextMun(this.currentMunition.ToString() + "/" + this.chargeurMunition.ToString());
         }
 
