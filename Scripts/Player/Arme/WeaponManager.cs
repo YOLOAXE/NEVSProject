@@ -123,7 +123,6 @@ namespace DitzelGames.FastIK
             {
                 wI[this.currentIDArme].getArmeScript().OnChangeWeapon();
                 CmdChangeWeapon();
-                wI[this.currentIDArme].getArmeScript().OnSelectWeapon();
             }
             handAnimator.SetBool("Aim", Input.GetButton("Fire2"));
         }
@@ -159,6 +158,7 @@ namespace DitzelGames.FastIK
             this.currentIDArme = newID;
             handAnimator.Rebind();
             handAnimator.SetInteger("id", this.currentIDArme);
+            wI[this.currentIDArme].getArmeScript().OnSelectWeapon();
         }
 
         public GameObject getImpactByTag(string tag)

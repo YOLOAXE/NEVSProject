@@ -11765,7 +11765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608e1830c8b753e4d9c83eea2b9eb57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
+  syncMode: 1
   syncInterval: 0.1
   wM: {fileID: 5647902001007025901}
   netAnim: {fileID: 0}
@@ -25425,7 +25425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  serverOnly: 1
+  serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
 --- !u!114 &804187609
@@ -25440,7 +25440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9742cf77834936a45888e26d0eb9b346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
+  syncMode: 1
   syncInterval: 0.1
   wM: {fileID: 5647902001007025901}
   netAnim: {fileID: 4728258800390229483}
@@ -25622,7 +25622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f64811ab84b681c46a6fed6904925a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
+  syncMode: 1
   syncInterval: 0.1
   wM: {fileID: 5647902001007025901}
   netAnim: {fileID: 4728258800390229483}
