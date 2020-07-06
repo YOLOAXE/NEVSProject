@@ -106,18 +106,21 @@ namespace DitzelGames.FastIK
             isReload = false;
         }
 
-        private void OnChangeChargeur(int newCC, int oldCC)
+        private void OnChangeChargeur(int oldCC, int newCC)
         {
+            this.chargeurMunition = newCC;
             base.wM.SetTextMun(this.currentMunition.ToString() + "/" + this.chargeurMunition.ToString());
             if (this.chargeurMunition == 0 || this.currentMunition == this.maxMunition)
             {
                 this.isReload = false;
                 m_animator.SetBool("reload", false);
             }
+
         }
 
-        private void OnChangeMunition(int newCM, int oldCM)
+        private void OnChangeMunition(int oldCM, int newCM)
         {
+            this.currentMunition = newCM;
             base.wM.SetTextMun(this.currentMunition.ToString() + "/" + this.chargeurMunition.ToString());
         }
 
