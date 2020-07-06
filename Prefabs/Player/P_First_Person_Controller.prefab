@@ -11769,6 +11769,14 @@ MonoBehaviour:
   syncInterval: 0.1
   wM: {fileID: 5647902001007025901}
   netAnim: {fileID: 0}
+  m_animator: {fileID: 0}
+  currentMunition: 0
+  maxMunition: 0
+  shootRate: 0.8
+  forceSendGrenade: 3000
+  grenadeSpawn: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  targetCamera: {fileID: 0}
 --- !u!1 &2798017871843923878
 GameObject:
   m_ObjectHideFlags: 0
@@ -25648,7 +25656,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  serverOnly: 1
+  serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
 --- !u!1 &9067417444672103383
