@@ -10,8 +10,8 @@ namespace DitzelGames.FastIK
     {
         [Header("Arme Setting")]
         [SerializeField] private Animator m_animator = null;
-        [SerializeField] [SyncVar(hook = nameof(OnChangeMunition))] private int currentMunition = 0;
-        [SerializeField] [SyncVar(hook = nameof(OnChangeChargeur))] private int chargeurMunition = 0;
+        [SerializeField] [SyncVar(hook = "OnChangeMunition")] private int currentMunition = 0;
+        [SerializeField] [SyncVar(hook = "OnChangeChargeur")] private int chargeurMunition = 0;
         [SerializeField] private int maxMunition = 0;
         [SerializeField] private float shootRate = 0.8f;
         [SerializeField] private float reloadTimeParDouille = 0.8f;
@@ -41,7 +41,7 @@ namespace DitzelGames.FastIK
 
         public override IEnumerator shoot()
         {
-            if (currentMunition > 0)
+            if (this.currentMunition > 0)
             {
                 if (!isShoot && !isReload && Input.GetButtonDown("Fire1"))
                 {
@@ -120,6 +120,7 @@ namespace DitzelGames.FastIK
 
         private void OnChangeMunition(int oldCM, int newCM)
         {
+            Debug.Log(oldCM.ToString() + " / " + newCM.ToString());
             this.currentMunition = newCM;
             base.wM.SetTextMun(this.currentMunition.ToString() + "/" + this.chargeurMunition.ToString());
         }
