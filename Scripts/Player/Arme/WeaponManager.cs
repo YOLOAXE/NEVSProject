@@ -187,7 +187,10 @@ namespace DitzelGames.FastIK
 
         public void SetTextMun(string txt)
         {
-            textMun.text = txt;
+            if (textMun)
+            {
+                textMun.text = txt;
+            }
         }
 
         public void StartcShake(float duration,float magnitude)
