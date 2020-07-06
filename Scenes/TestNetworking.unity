@@ -1807,7 +1807,7 @@ MonoBehaviour:
   lm:
     serializedVersion: 2
     m_Bits: 4294967295
-  ne: {fileID: 2729096480347113563}
+  ne: {fileID: 2729096480347113540}
   targetPlayer: {fileID: 0}
 --- !u!135 &2045069202195873213
 SphereCollider:
@@ -1888,9 +1888,9 @@ GameObject:
   - component: {fileID: 2729096480347113564}
   - component: {fileID: 2729096480347113567}
   - component: {fileID: 2729096480347113566}
-  - component: {fileID: 2729096480347113563}
   - component: {fileID: 2729096480347113538}
   - component: {fileID: 2729096480347113539}
+  - component: {fileID: 2729096480347113540}
   m_Layer: 0
   m_Name: Enemie
   m_TagString: Ennemie
@@ -1932,6 +1932,36 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
+--- !u!114 &2729096480347113540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2729096480347113537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce7d937962bfc145a4ccb651e749896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  agent: {fileID: 2729096480347113566}
+  currentHealth: 100
+  maxHealth: 100
+  path:
+  - {fileID: 552147747}
+  - {fileID: 810728303}
+  - {fileID: 2081945550}
+  - {fileID: 1140102556}
+  huntingDistance: 6
+  attaqueDistance: 15
+  pathChangeDistance: 2
+  patrolTarget: 0
+  ed: {fileID: 2045069202195873212}
+  inFight: 0
+  targetPlayer: {fileID: 0}
+  timeFight: 15
 --- !u!4 &2729096480347113562
 Transform:
   m_ObjectHideFlags: 0
@@ -1950,36 +1980,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2729096480347113563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2729096480347113537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b97c8d484833f644aa3e2e9e8bbdd60f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  agent: {fileID: 2729096480347113566}
-  currentHealth: 100
-  maxHealth: 100
-  path:
-  - {fileID: 552147747}
-  - {fileID: 810728303}
-  - {fileID: 2081945550}
-  - {fileID: 1140102556}
-  chaseDistance: 30
-  attaqueDistance: 15
-  pathChangeDistance: 2
-  patrolTarget: 0
-  ed: {fileID: 2045069202195873212}
-  inFight: 0
-  targetPlayer: {fileID: 0}
-  timeFight: 15
 --- !u!23 &2729096480347113564
 MeshRenderer:
   m_ObjectHideFlags: 0

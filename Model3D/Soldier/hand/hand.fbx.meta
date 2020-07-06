@@ -21,8 +21,7 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
-    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
-      human bone 'LeftUpperLeg' not found\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -75,16 +74,7 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips:
-  - b3dce868a7b34e24787d44d8c04da40b
-  - ae5a5119fd17c7649b70240caf38d362
-  - e2866e1bfa34e17418835b296ae5e4c3
-  - 08bfcf50857f35547b6147406d967ff5
-  - 48c19cd52eea6d64b86e3b47cf654eed
-  - 724809c790b8a6b4a86eae4aa01f1813
-  - 6f474219c5daf2b4494e0ea3e4f443b1
-  - f0c671f42302946459b40afe85a33581
-  - 2197bd10898fa2f449aad9946eff9ede
+  referencedClips: []
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
