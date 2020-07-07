@@ -10,7 +10,7 @@ namespace VHS
     {
         [Header("EnemieInfo")]
         [SerializeField] protected NavMeshAgent agent = null;
-        [SyncVar] public float currentHealth = 100.0f;
+        [SerializeField] private float currentHealth = 100.0f;
         [SerializeField] private float maxHealth = 100.0f;
 
         [Header("Deplacement")]       
@@ -30,12 +30,23 @@ namespace VHS
         [SerializeField] private bool inFight = false;
         [SerializeField] protected GameObject targetPlayer = null;
         [SerializeField] private float timeFight = 15f;
+        [SerializeField] private float tempsMort = 3f;
         private float timerF = -20f;
+
+        [Header("Mort")]
+        [SerializeField] private AnimationCurve fadeIn;
+        [SerializeField] private Renderer[] _renderer;
+        [SerializeField] private ParticleSystem ps;
+        private bool isDead = false;
 
         #region Start & Stop Callbacks
 
         public override void OnStartServer()
         {
+            path.Add(GameObject.Find("PathPoint (1)"));
+            path.Add(GameObject.Find("PathPoint (2)"));
+            path.Add(GameObject.Find("PathPoint (3)"));
+            path.Add(GameObject.Find("PathPoint (4)"));
             agent.SetDestination(path[this.patrolTarget].transform.position);
         }
 
@@ -88,18 +99,50 @@ namespace VHS
                 {
                     this.research = false;
                     this.researchNb = 3;
+                    agent.SetDestination(path[this.patrolTarget].transform.position);
                 }
             }
         }
 
         public void addTargetPlayer(GameObject TPlayer)
         {
-            Debug.Log("loop");
             this.inFight = true;
             this.timerF = this.timeFight;
             this.research = false;
             this.researchNb = 3;
             this.targetPlayer = TPlayer;
+        }
+
+        public void ReceiveDamage(float damage,GameObject player)
+        {
+            this.currentHealth -= damage;
+            addTargetPlayer(player);
+            if(this.currentHealth <= 0 && !this.isDead)
+            {
+                this.isDead = true;
+                StartCoroutine(dead());
+            }
+        }
+
+        private IEnumerator dead()
+        {
+            float timer = 0;
+            int shaderProperty = Shader.PropertyToID("_cutoff");
+            var main = ps.main;
+            main.duration = tempsMort/2;
+            ps.Play();
+
+            while (timer < tempsMort/2)
+            {
+                foreach (Renderer r in _renderer)
+                {
+                    r.material.SetFloat(shaderProperty, fadeIn.Evaluate(Mathf.InverseLerp(0, tempsMort/2, timer)));
+                }
+                timer += Time.deltaTime;
+                yield return null;
+            }
+            yield return new WaitForSeconds(tempsMort);
+            NetworkServer.Destroy(gameObject);
         }
 
         public virtual void attack() { }

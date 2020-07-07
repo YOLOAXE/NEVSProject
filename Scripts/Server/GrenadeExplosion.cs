@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Mirror;
 using System.Collections.Generic;
+using VHS;
 
 namespace DitzelGames.FastIK
 {
@@ -19,6 +20,7 @@ namespace DitzelGames.FastIK
         [SerializeField] private AudioSource m_audio = null;
         [SerializeField] private AudioClip m_clip = null;
         [SerializeField] private MeshRenderer[] partGrenade = null;
+        private GameObject owner = null;
 
         void Start()
         {
@@ -44,7 +46,17 @@ namespace DitzelGames.FastIK
                 {
                     nerObject.GetComponent<WeaponManager>().StartcShake(this.shakeDuration, this.shakeMagnitude);
                 }
+                NavEnemie ne = nerObject.GetComponent<NavEnemie>();
+                if (ne)
+                {
+                    ne.ReceiveDamage(explosionDegatBase * (1 - (Vector3.Distance(transform.position, nerObject.transform.position) / explosionRadius)), this.owner);
+                }
             }
+        }
+
+        public void SetOwner(GameObject player)
+        {
+            this.owner = player;
         }
         #region Start & Stop Callbacks
 

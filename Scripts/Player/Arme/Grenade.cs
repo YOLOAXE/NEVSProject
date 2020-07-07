@@ -54,6 +54,7 @@ namespace DitzelGames.FastIK
                 GameObject io = Instantiate(grenadeSpawn, transform.position, Quaternion.identity);
                 io.GetComponent<Rigidbody>().AddForce(this.targetCamera.transform.TransformDirection(Vector3.forward) * forceSendGrenade);
                 NetworkServer.Spawn(io);
+                io.GetComponent<GrenadeExplosion>().SetOwner(base.wM.gameObject);
                 this.currentMunition--;
                 base.wM.RpcSendMunition(base.idArme, this.currentMunition, 0);
             }

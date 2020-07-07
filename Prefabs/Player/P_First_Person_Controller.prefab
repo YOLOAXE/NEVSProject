@@ -11755,7 +11755,7 @@ MonoBehaviour:
   netAnim: {fileID: 4728258800390229483}
   idArme: 4
   m_animator: {fileID: 656956183755886112}
-  currentMunition: 10
+  currentMunition: 50
   shootRate: 0.6
   forceSendGrenade: 3000
   grenadeSpawn: {fileID: 737404301218681614, guid: a0b1176c5ba43ae4bbc1ba1eaa6922e1,
@@ -25433,7 +25433,7 @@ MonoBehaviour:
   idArme: 3
   m_animator: {fileID: 656956183755886112}
   currentMunition: 1
-  chargeurMunition: 100
+  chargeurMunition: 200
   maxMunition: 4
   shootRate: 0.8
   reloadTimeParDouille: 0.5
@@ -25632,7 +25632,7 @@ MonoBehaviour:
   idArme: 2
   m_animator: {fileID: 656956183755886112}
   currentMunition: 3
-  chargeurMunition: 150
+  chargeurMunition: 200
   maxMunition: 8
   shootRate: 0.8
   reloadTimeParDouille: 0.8

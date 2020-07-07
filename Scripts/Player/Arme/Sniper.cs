@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
+using VHS;
 
 namespace DitzelGames.FastIK
 {
@@ -88,6 +89,10 @@ namespace DitzelGames.FastIK
                     }
                     NetworkServer.Spawn(io);
                     io.GetComponent<ImpactGlue>().AplyGlue(hit.transform.gameObject);
+                    if (hit.transform.gameObject.GetComponent<NavEnemie>())
+                    {
+                        hit.transform.gameObject.GetComponent<NavEnemie>().ReceiveDamage(degatParBalle, base.wM.gameObject);
+                    }
                 }
                 this.currentMunition--;
                 base.wM.RpcSendMunition(base.idArme, this.currentMunition, this.chargeurMunition);
