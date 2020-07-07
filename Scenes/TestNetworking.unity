@@ -155,7 +155,7 @@ MonoBehaviour:
   syncInterval: 0.1
   spawnObject: {fileID: 3745584474752941455, guid: 4fd37a3f668dfba4ab6d5a4f6bbe0913,
     type: 3}
-  spawnRate: 0.5
+  spawnRate: 2
   spawnRadius: 20
 --- !u!114 &350004392
 MonoBehaviour:

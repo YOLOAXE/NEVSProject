@@ -120,8 +120,13 @@ namespace VHS
             if(this.currentHealth <= 0 && !this.isDead)
             {
                 this.isDead = true;
-                StartCoroutine(dead());
+                RpcdeadStartC();
             }
+        }
+        [ClientRpc]
+        void RpcdeadStartC()
+        {
+            StartCoroutine(dead());
         }
 
         private IEnumerator dead()
