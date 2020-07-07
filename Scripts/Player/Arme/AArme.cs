@@ -9,6 +9,7 @@ namespace DitzelGames.FastIK
     {
         [SerializeField] protected WeaponManager wM = null;
         [SerializeField] protected NetworkAnimator netAnim = null;
+        [SerializeField] protected int idArme = 0;
         public virtual IEnumerator shoot() { yield return null; }
         public virtual IEnumerator reload() { yield return null; }
         public virtual void CmdSendTire() {}
@@ -16,7 +17,7 @@ namespace DitzelGames.FastIK
         public virtual void AimArme(bool state) {}
         public virtual void OnChangeWeapon() { }
         public virtual void OnSelectWeapon() { }
-        public virtual void OnChangeCM(int mun,int charg) { }
+        public virtual void OnChangeCM(int mun,int charg,bool draw) { }
         public virtual IEnumerator CmdSendReload() { yield return null; }
     }
 }

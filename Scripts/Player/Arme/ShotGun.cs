@@ -83,7 +83,7 @@ namespace DitzelGames.FastIK
                     }
                 }
                 this.currentMunition--;
-                base.wM.RpcSendMunition(this.currentMunition,this.chargeurMunition);
+                base.wM.RpcSendMunition(base.idArme, this.currentMunition,this.chargeurMunition);
             }
         }
 
@@ -95,17 +95,20 @@ namespace DitzelGames.FastIK
                 yield return new WaitForSeconds(reloadTimeParDouille);
                 this.currentMunition++;
                 this.chargeurMunition--;
-                base.wM.RpcSendMunition(this.currentMunition, this.chargeurMunition);
+                base.wM.RpcSendMunition(base.idArme, this.currentMunition, this.chargeurMunition);
             }
             yield return new WaitForSeconds(reloadTimeParDouille);
             isReload = false;
         }
 
-        public override void OnChangeCM(int mun, int charg)
+        public override void OnChangeCM(int mun, int charg, bool draw)
         {
             this.chargeurMunition = charg;
             this.currentMunition = mun;
-            base.wM.SetTextMun(this.currentMunition.ToString() + "/" + this.chargeurMunition.ToString());
+            if (draw)
+            {
+                base.wM.SetTextMun(this.currentMunition.ToString() + "/" + this.chargeurMunition.ToString());
+            }
             if (this.chargeurMunition == 0 || this.currentMunition == this.maxMunition)
             {
                 this.isReload = false;

@@ -186,9 +186,9 @@ namespace DitzelGames.FastIK
         }
 
         [ClientRpc]
-        public void RpcSendMunition(int mun,int charg)
+        public void RpcSendMunition(int id,int mun,int charg)
         {
-            wI[currentIDArme].getArmeScript().OnChangeCM(mun, charg);
+            wI[id].getArmeScript().OnChangeCM(mun, charg,id == this.currentIDArme);
         }
 
         public void SetTextMun(string txt)

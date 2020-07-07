@@ -25,8 +25,8 @@ namespace DitzelGames.FastIK
                 {
                     isShoot = true;
                     base.netAnim.SetTrigger("shootOneShot");
-                    base.wM.CmdTire();
                     yield return new WaitForSeconds(this.shootRate);
+                    base.wM.CmdTire();
                     isShoot = false;
                 }
             }
@@ -37,10 +37,14 @@ namespace DitzelGames.FastIK
             yield return null;
         }
 
-        public override void OnChangeCM(int mun, int charg)
+        public override void OnChangeCM(int mun, int charg, bool draw)
         {
             this.currentMunition = mun;
-            base.wM.SetTextMun(this.currentMunition.ToString());
+            m_animator.SetBool("reload", mun <= 0);
+            if (draw)
+            {
+                base.wM.SetTextMun(this.currentMunition.ToString());
+            }
         }
 
         public override void CmdSendTire()
@@ -51,18 +55,20 @@ namespace DitzelGames.FastIK
                 io.GetComponent<Rigidbody>().AddForce(this.targetCamera.transform.TransformDirection(Vector3.forward) * forceSendGrenade);
                 NetworkServer.Spawn(io);
                 this.currentMunition--;
-                base.wM.RpcSendMunition(this.currentMunition, 0);
+                base.wM.RpcSendMunition(base.idArme, this.currentMunition, 0);
             }
         }
 
         public override void OnSelectWeapon()
         {
             base.wM.SetTextMun(this.currentMunition.ToString());
+            m_animator.SetBool("reload", this.currentMunition <= 0);
         }
 
         public override void OnChangeWeapon()
         {
             base.wM.SetTextMun("");
+            m_animator.SetBool("reload", false);
         }
     }
 }

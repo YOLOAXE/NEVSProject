@@ -11752,10 +11752,11 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   wM: {fileID: 5647902001007025901}
-  netAnim: {fileID: 5275191263767026462}
+  netAnim: {fileID: 4728258800390229483}
+  idArme: 4
   m_animator: {fileID: 656956183755886112}
   currentMunition: 10
-  shootRate: 0.8
+  shootRate: 0.6
   forceSendGrenade: 3000
   grenadeSpawn: {fileID: 737404301218681614, guid: a0b1176c5ba43ae4bbc1ba1eaa6922e1,
     type: 3}
@@ -18572,7 +18573,7 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 4ef84a0df980c5f4e8bce9356d61d2f5, type: 3}
   m_Controller: {fileID: 9100000, guid: c5bea93b56a062743873a5da2321666b, type: 2}
-  m_CullingMode: 2
+  m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -18612,8 +18613,8 @@ MonoBehaviour:
     m_noAmmo: {fileID: 8300000, guid: f47a4f6a3bc89c5498f1fe0b0c88f42f, type: 3}
     m_endReload: {fileID: 0}
     ps: {fileID: 9120052474172031451}
-  - name: 
-    m_Shoot: {fileID: 0}
+  - name: Grenade
+    m_Shoot: {fileID: 8300000, guid: 5996ee94bad70fa458db6db01587ee80, type: 3}
     m_reload: {fileID: 0}
     m_noAmmo: {fileID: 0}
     m_endReload: {fileID: 0}
@@ -24349,6 +24350,7 @@ MonoBehaviour:
   syncInterval: 0.1
   wM: {fileID: 5647902001007025901}
   netAnim: {fileID: 0}
+  idArme: 1
 --- !u!114 &8274183403869804478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24814,6 +24816,7 @@ MonoBehaviour:
   syncInterval: 0.1
   wM: {fileID: 5647902001007025901}
   netAnim: {fileID: 0}
+  idArme: 0
 --- !u!114 &1362680037303207995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25427,6 +25430,7 @@ MonoBehaviour:
   syncInterval: 0.1
   wM: {fileID: 5647902001007025901}
   netAnim: {fileID: 4728258800390229483}
+  idArme: 3
   m_animator: {fileID: 656956183755886112}
   currentMunition: 1
   chargeurMunition: 100
@@ -25625,6 +25629,7 @@ MonoBehaviour:
   syncInterval: 0.1
   wM: {fileID: 5647902001007025901}
   netAnim: {fileID: 4728258800390229483}
+  idArme: 2
   m_animator: {fileID: 656956183755886112}
   currentMunition: 3
   chargeurMunition: 150
