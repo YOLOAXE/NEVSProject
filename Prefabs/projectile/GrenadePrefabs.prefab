@@ -120,8 +120,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  destroyAfter: 10
-  explodedAfter: 5
+  destroyAfter: 8
+  explodedAfter: 4
   explosionDegatBase: 300
   explosionForce: 9000
   explosionRadius: 10

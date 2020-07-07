@@ -28,5 +28,27 @@ public class ImpactGlue : NetworkBehaviour
     {
         NetworkServer.Destroy(gameObject);
     }
+
+    [Server]
+    public void AplyGlue(GameObject ob)
+    {
+        if (ob)
+        {
+            if (ob.GetComponent<NetworkIdentity>())
+            {
+                RpcAplyIntoObject(ob);
+                transform.SetParent(ob.transform);
+            }
+        }
+    }
+
+    [ClientRpc]
+    void RpcAplyIntoObject(GameObject ob)
+    {
+        if (ob)
+        {
+            transform.SetParent(ob.transform);
+        }
+    }
     #endregion
 }

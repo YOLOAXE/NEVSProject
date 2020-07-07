@@ -82,12 +82,12 @@ namespace DitzelGames.FastIK
                 if (Physics.Raycast(this.ray, out hit, Mathf.Infinity, this.layerImpactDegat))
                 {
                     GameObject io = Instantiate(base.wM.getImpactByTag(hit.transform.tag), hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
-                    //io.transform.parent = hit.transform;
                     if (hit.rigidbody)
                     {
                         hit.rigidbody.AddForce(this.ray.direction * hitForceTire);
                     }
                     NetworkServer.Spawn(io);
+                    io.GetComponent<ImpactGlue>().AplyGlue(hit.transform.gameObject);
                 }
                 this.currentMunition--;
                 base.wM.RpcSendMunition(base.idArme, this.currentMunition, this.chargeurMunition);

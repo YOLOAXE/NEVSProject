@@ -73,13 +73,13 @@ namespace DitzelGames.FastIK
                     this.ray = new Ray(this.targetCamera.transform.position, direction);
                     if (Physics.Raycast(this.ray, out hit, Mathf.Infinity, this.layerImpactDegat))
                     {
-                        GameObject io = Instantiate(base.wM.getImpactByTag(hit.transform.tag), hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
-                        //io.transform.parent = hit.transform;
+                        GameObject io = Instantiate(base.wM.getImpactByTag(hit.transform.tag), hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));                        
                         if (hit.rigidbody)
                         {
                             hit.rigidbody.AddForce(this.ray.direction * hitForceTire);
                         }
                         NetworkServer.Spawn(io);
+                        io.GetComponent<ImpactGlue>().AplyGlue(hit.transform.gameObject);
                     }
                 }
                 this.currentMunition--;

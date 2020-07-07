@@ -30,7 +30,7 @@ namespace VHS
         [SerializeField] private bool inFight = false;
         [SerializeField] protected GameObject targetPlayer = null;
         [SerializeField] private float timeFight = 15f;
-        private float timerF = 0f;
+        private float timerF = -20f;
 
         #region Start & Stop Callbacks
 
@@ -74,14 +74,15 @@ namespace VHS
                 this.ed.ResetTP();
                 this.targetPlayer = null;
                 agent.isStopped = false;
-                agent.SetDestination(new Vector3(Random.Range(-huntingDistance, huntingDistance), this.transform.position.y, this.transform.position.z + Random.Range(-huntingDistance, huntingDistance)));
                 agent.SetDestination(path[this.patrolTarget].transform.position);
                 
             } 
             
-            if (this.research && this.agent.desiredVelocity.magnitude > 0)
+            if (this.research && this.agent.desiredVelocity.magnitude < 0.1f)
             {
-                agent.SetDestination(new Vector3(this.transform.position.x + Random.Range(-huntingDistance, huntingDistance), this.transform.position.y, this.transform.position.z + Random.Range(-huntingDistance, huntingDistance)));
+                agent.SetDestination(new Vector3(this.transform.position.x + Random.Range(-huntingDistance, huntingDistance),
+                                                 this.transform.position.y,
+                                                 this.transform.position.z + Random.Range(-huntingDistance, huntingDistance)));
                 this.researchNb--;
                 if (this.researchNb == 0)
                 {
@@ -96,6 +97,8 @@ namespace VHS
             Debug.Log("loop");
             this.inFight = true;
             this.timerF = this.timeFight;
+            this.research = false;
+            this.researchNb = 3;
             this.targetPlayer = TPlayer;
         }
 
