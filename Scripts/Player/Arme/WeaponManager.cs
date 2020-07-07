@@ -185,6 +185,12 @@ namespace DitzelGames.FastIK
             StartCoroutine(wI[currentIDArme].getArmeScript().CmdSendReload());
         }
 
+        [ClientRpc]
+        public void RpcSendMunition(int mun,int charg)
+        {
+            wI[currentIDArme].getArmeScript().OnChangeCM(mun, charg);
+        }
+
         public void SetTextMun(string txt)
         {
             if (textMun)

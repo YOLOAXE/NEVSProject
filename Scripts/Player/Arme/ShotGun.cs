@@ -9,8 +9,8 @@ namespace DitzelGames.FastIK
     {
         [Header("Arme Setting")]
         [SerializeField] private Animator m_animator = null;
-        [SerializeField] [SyncVar(hook = nameof(OnChangeMunition))] private int currentMunition = 0;
-        [SerializeField] [SyncVar(hook = nameof(OnChangeChargeur))] private int chargeurMunition = 0;
+        [SerializeField] private int currentMunition = 0;
+        [SerializeField] private int chargeurMunition = 0;
         [SerializeField] private int maxMunition = 0;
         [SerializeField] private float shootRate = 0.8f;
         [SerializeField] private float reloadTimeParDouille = 0.8f;
@@ -83,6 +83,7 @@ namespace DitzelGames.FastIK
                     }
                 }
                 this.currentMunition--;
+                base.wM.RpcSendMunition(this.currentMunition,this.chargeurMunition);
             }
         }
 
@@ -94,24 +95,22 @@ namespace DitzelGames.FastIK
                 yield return new WaitForSeconds(reloadTimeParDouille);
                 this.currentMunition++;
                 this.chargeurMunition--;
+                base.wM.RpcSendMunition(this.currentMunition, this.chargeurMunition);
             }
             yield return new WaitForSeconds(reloadTimeParDouille);
             isReload = false;
         }
 
-        private void OnChangeChargeur(int newCC,int oldCC)
+        public override void OnChangeCM(int mun, int charg)
         {
+            this.chargeurMunition = charg;
+            this.currentMunition = mun;
             base.wM.SetTextMun(this.currentMunition.ToString() + "/" + this.chargeurMunition.ToString());
             if (this.chargeurMunition == 0 || this.currentMunition == this.maxMunition)
             {
                 this.isReload = false;
                 m_animator.SetBool("reload", false);
             }
-        }
-
-        private void OnChangeMunition(int newCM,int oldCM)
-        {
-            base.wM.SetTextMun(this.currentMunition.ToString() + "/" + this.chargeurMunition.ToString());
         }
 
         public override void OnSelectWeapon()
@@ -123,7 +122,5 @@ namespace DitzelGames.FastIK
         {
             base.wM.SetTextMun("");
         }
-
-        
     }
 }

@@ -9,13 +9,11 @@ namespace DitzelGames.FastIK
     {
         [Header("Arme Setting")]
         [SerializeField] private Animator m_animator = null;
-        [SerializeField] [SyncVar(hook = nameof(OnChangeMunition))] private int currentMunition = 0;
-        [SerializeField] private int maxMunition = 0;
+        [SerializeField] private int currentMunition = 10;
         [SerializeField] private float shootRate = 0.8f;
         [Header("Shoot Setting")]
         [SerializeField] private float forceSendGrenade = 3000f;
         [SerializeField] private GameObject grenadeSpawn = null;
-        [SerializeField] private GameObject spawnPoint = null;
         [SerializeField] private GameObject targetCamera = null;
         private bool isShoot = false;
 
@@ -23,7 +21,7 @@ namespace DitzelGames.FastIK
         {
             if (this.currentMunition > 0)
             {
-                if (!isShoot && Input.GetButtonUp("Fire1"))
+                if (!isShoot && Input.GetButtonDown("Fire1"))
                 {
                     isShoot = true;
                     base.netAnim.SetTrigger("shootOneShot");
@@ -32,15 +30,16 @@ namespace DitzelGames.FastIK
                     isShoot = false;
                 }
             }
-            else if (Input.GetButtonUp("Fire1"))
+            else if (Input.GetButtonDown("Fire1"))
             {
                 base.netAnim.SetTrigger("noAmmo");
             }
             yield return null;
         }
 
-        private void OnChangeMunition(int newCM, int oldCM)
+        public override void OnChangeCM(int mun, int charg)
         {
+            this.currentMunition = mun;
             base.wM.SetTextMun(this.currentMunition.ToString());
         }
 
@@ -48,9 +47,11 @@ namespace DitzelGames.FastIK
         {
             if (currentMunition > 0)
             {
-                GameObject io = Instantiate(grenadeSpawn, spawnPoint.transform.position, Quaternion.identity);
+                GameObject io = Instantiate(grenadeSpawn, transform.position, Quaternion.identity);
                 io.GetComponent<Rigidbody>().AddForce(this.targetCamera.transform.TransformDirection(Vector3.forward) * forceSendGrenade);
+                NetworkServer.Spawn(io);
                 this.currentMunition--;
+                base.wM.RpcSendMunition(this.currentMunition, 0);
             }
         }
 

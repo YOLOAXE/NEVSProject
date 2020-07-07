@@ -16,6 +16,7 @@ namespace DitzelGames.FastIK
         public virtual void AimArme(bool state) {}
         public virtual void OnChangeWeapon() { }
         public virtual void OnSelectWeapon() { }
+        public virtual void OnChangeCM(int mun,int charg) { }
         public virtual IEnumerator CmdSendReload() { yield return null; }
     }
 }

@@ -11710,8 +11710,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2654383174263841262}
-  - component: {fileID: 2905699352606769865}
   - component: {fileID: 1946983047362633583}
+  - component: {fileID: 8706650824702194737}
   m_Layer: 0
   m_Name: m26
   m_TagString: Untagged
@@ -11737,22 +11737,6 @@ Transform:
   m_Father: {fileID: 8006424035838960116}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 5.08, y: -174.79102, z: 0.24800001}
---- !u!114 &2905699352606769865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2654383174263653148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 1
-  m_AssetId: 
-  hasSpawned: 0
 --- !u!114 &1946983047362633583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11765,18 +11749,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 608e1830c8b753e4d9c83eea2b9eb57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 1
+  syncMode: 0
   syncInterval: 0.1
   wM: {fileID: 5647902001007025901}
-  netAnim: {fileID: 0}
-  m_animator: {fileID: 0}
-  currentMunition: 0
-  maxMunition: 0
+  netAnim: {fileID: 5275191263767026462}
+  m_animator: {fileID: 656956183755886112}
+  currentMunition: 10
   shootRate: 0.8
   forceSendGrenade: 3000
-  grenadeSpawn: {fileID: 0}
-  spawnPoint: {fileID: 0}
-  targetCamera: {fileID: 0}
+  grenadeSpawn: {fileID: 737404301218681614, guid: a0b1176c5ba43ae4bbc1ba1eaa6922e1,
+    type: 3}
+  targetCamera: {fileID: 7337787720274498183}
+--- !u!114 &8706650824702194737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2654383174263653148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &2798017871843923878
 GameObject:
   m_ObjectHideFlags: 0
@@ -24307,8 +24306,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7803260541671958327}
-  - component: {fileID: 7189058442549273798}
   - component: {fileID: 4974017048762912963}
+  - component: {fileID: 8274183403869804478}
   m_Layer: 0
   m_Name: Flashlight_GameObject
   m_TagString: Untagged
@@ -24334,22 +24333,6 @@ Transform:
   m_Father: {fileID: 8006424035838960116}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -80.114006, y: -62.5, z: 154.432}
---- !u!114 &7189058442549273798
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7803260541671624669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 1
-  m_AssetId: 
-  hasSpawned: 0
 --- !u!114 &4974017048762912963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24366,6 +24349,22 @@ MonoBehaviour:
   syncInterval: 0.1
   wM: {fileID: 5647902001007025901}
   netAnim: {fileID: 0}
+--- !u!114 &8274183403869804478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7803260541671624669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &7803260541671688421
 GameObject:
   m_ObjectHideFlags: 0
@@ -24776,8 +24775,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4933380107530888791}
-  - component: {fileID: 5515554870208804054}
   - component: {fileID: 8855660799583324230}
+  - component: {fileID: 1362680037303207995}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -24799,22 +24798,6 @@ Transform:
   m_Father: {fileID: 8006424035838960116}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5515554870208804054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8119405527128497181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  m_AssetId: 
-  hasSpawned: 0
 --- !u!114 &8855660799583324230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24831,6 +24814,22 @@ MonoBehaviour:
   syncInterval: 0.1
   wM: {fileID: 5647902001007025901}
   netAnim: {fileID: 0}
+--- !u!114 &1362680037303207995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8119405527128497181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &8132555186793143141
 GameObject:
   m_ObjectHideFlags: 0
@@ -25341,8 +25340,8 @@ GameObject:
   - component: {fileID: 8849857558398598524}
   - component: {fileID: 8838415928994377846}
   - component: {fileID: 8830743948234578032}
-  - component: {fileID: 1867127334334874500}
   - component: {fileID: 804187609}
+  - component: {fileID: 2865435888311131107}
   m_Layer: 8
   m_Name: M40A3 Rifle_prefab
   m_TagString: Untagged
@@ -25412,22 +25411,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &1867127334334874500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8852607392384801832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  m_AssetId: 
-  hasSpawned: 0
 --- !u!114 &804187609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25440,7 +25423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9742cf77834936a45888e26d0eb9b346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 1
+  syncMode: 0
   syncInterval: 0.1
   wM: {fileID: 5647902001007025901}
   netAnim: {fileID: 4728258800390229483}
@@ -25462,6 +25445,22 @@ MonoBehaviour:
   cameraAIM: {fileID: 2798017871843923878}
   ScopeOverlay: {fileID: 0}
   bAim: 0
+--- !u!114 &2865435888311131107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8852607392384801832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &8871045736368510036
 GameObject:
   m_ObjectHideFlags: 0
@@ -25582,7 +25581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5427591012426395683}
   - component: {fileID: 5190383470290996612}
-  - component: {fileID: 6642727939941072678}
+  - component: {fileID: 1144884747722558643}
   m_Layer: 0
   m_Name: Shotgun
   m_TagString: Untagged
@@ -25643,7 +25642,7 @@ MonoBehaviour:
   Z: 2
   scale: 0.1
   targetCamera: {fileID: 7337787720274498183}
---- !u!114 &6642727939941072678
+--- !u!114 &1144884747722558643
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
