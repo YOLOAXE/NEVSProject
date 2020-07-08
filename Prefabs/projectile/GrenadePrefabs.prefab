@@ -122,9 +122,9 @@ MonoBehaviour:
   syncInterval: 0.1
   destroyAfter: 8
   explodedAfter: 4
-  explosionDegatBase: 300
+  explosionDegatBase: 120
   explosionForce: 9000
-  explosionRadius: 10
+  explosionRadius: 8
   ShakeRadius: 35
   shakeDuration: 0.6
   shakeMagnitude: 0.2

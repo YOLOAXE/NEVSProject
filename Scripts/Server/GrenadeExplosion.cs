@@ -46,11 +46,6 @@ namespace DitzelGames.FastIK
                 {
                     nerObject.GetComponent<WeaponManager>().StartcShake(this.shakeDuration, this.shakeMagnitude);
                 }
-                NavEnemie ne = nerObject.GetComponent<NavEnemie>();
-                if (ne)
-                {
-                    ne.ReceiveDamage(explosionDegatBase * (1 - (Vector3.Distance(transform.position, nerObject.transform.position) / explosionRadius)), this.owner);
-                }
             }
         }
 
@@ -83,6 +78,11 @@ namespace DitzelGames.FastIK
                 if (rb)
                 {
                     rb.AddExplosionForce(this.explosionForce, transform.position, this.explosionRadius);
+                }
+                EnemieMembre ne = nerObject.GetComponent<EnemieMembre>();
+                if (ne)
+                {
+                    ne.ReceiveDamageMembre(explosionDegatBase * (1 - (Vector3.Distance(transform.position, nerObject.transform.position) / explosionRadius)), this.owner);
                 }
             }
         }

@@ -34,32 +34,29 @@ namespace VHS
         private float timerF = -20f;
 
         [Header("Mort")]
-        [SerializeField] private AnimationCurve fadeIn;
-        [SerializeField] private Renderer[] _renderer;
         [SerializeField] private ParticleSystem ps;
         private bool isDead = false;
+
+        [Header("Animation")]
+        [SerializeField] private Animator m_animator = null;
 
         #region Start & Stop Callbacks
 
         public override void OnStartServer()
         {
-            path.Add(GameObject.Find("PathPoint (1)"));
-            path.Add(GameObject.Find("PathPoint (2)"));
-            path.Add(GameObject.Find("PathPoint (3)"));
-            path.Add(GameObject.Find("PathPoint (4)"));
             agent.SetDestination(path[this.patrolTarget].transform.position);
         }
 
         void Update()
         {
-            if(!isServer){return;}
+            if(!isServer || this.isDead) {return;}
             patrol();
             TargetPlayerTime();
             if(this.inFight)
             {
                 this.attack();
             }
-            
+            m_animator.SetFloat("Speed", this.agent.desiredVelocity.magnitude);
         }
 
         private void patrol()
@@ -115,12 +112,17 @@ namespace VHS
 
         public void ReceiveDamage(float damage,GameObject player)
         {
-            this.currentHealth -= damage;
-            addTargetPlayer(player);
-            if(this.currentHealth <= 0 && !this.isDead)
+            if (isServer)
             {
-                this.isDead = true;
-                RpcdeadStartC();
+                this.currentHealth -= damage;
+                addTargetPlayer(player);
+                if (this.currentHealth <= 0 && !this.isDead)
+                {
+                    this.isDead = true;
+                    agent.isStopped = true;
+                    m_animator.SetBool("dead", true);
+                    RpcdeadStartC();
+                }
             }
         }
         [ClientRpc]
@@ -131,21 +133,9 @@ namespace VHS
 
         private IEnumerator dead()
         {
-            float timer = 0;
-            int shaderProperty = Shader.PropertyToID("_cutoff");
-            var main = ps.main;
-            main.duration = tempsMort/2;
+            ps.transform.eulerAngles = new Vector3(0.0f, 150.0f, 0.0f);
+            yield return new WaitForSeconds(3f);
             ps.Play();
-
-            while (timer < tempsMort/2)
-            {
-                foreach (Renderer r in _renderer)
-                {
-                    r.material.SetFloat(shaderProperty, fadeIn.Evaluate(Mathf.InverseLerp(0, tempsMort/2, timer)));
-                }
-                timer += Time.deltaTime;
-                yield return null;
-            }
             yield return new WaitForSeconds(tempsMort);
             NetworkServer.Destroy(gameObject);
         }

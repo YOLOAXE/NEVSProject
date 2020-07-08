@@ -46,7 +46,7 @@ namespace VHS
             lookPos = this.targetPlayer.transform.position - this.transform.position;
             lookPos.y = 0;
             lookAngle = Quaternion.LookRotation(lookPos);
-            this.transform.rotation = Quaternion.Slerp(transform.rotation, lookAngle, Time.deltaTime * (base.agent.angularSpeed/10));
+            this.transform.rotation = Quaternion.Slerp(transform.rotation, lookAngle, Time.deltaTime * (base.agent.angularSpeed/30));
         }
 
         [Server]
@@ -63,7 +63,7 @@ namespace VHS
                     this.ray = new Ray(this.shootPoint.transform.position, direction);
                     if (Physics.Raycast(this.ray, out hit, Mathf.Infinity, this.lm))
                     {
-                        Debug.Log(hit.transform.gameObject.name);
+
                     }
                     yield return new WaitForSeconds(bulletRate);
                 }

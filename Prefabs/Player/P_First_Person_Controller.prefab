@@ -25441,7 +25441,7 @@ MonoBehaviour:
   timeShakeShoot: 0.15
   layerImpactDegat:
     serializedVersion: 2
-    m_Bits: 311
+    m_Bits: 1335
   hitForceTire: 9000
   degatParBalle: 150
   Z: 30
@@ -25640,10 +25640,10 @@ MonoBehaviour:
   timeShakeShoot: 0.1
   layerImpactDegat:
     serializedVersion: 2
-    m_Bits: 311
+    m_Bits: 1335
   hitForceTire: 3000
   balleparTire: 10
-  degatParBalle: 10
+  degatParBalle: 20
   Z: 2
   scale: 0.1
   targetCamera: {fileID: 7337787720274498183}

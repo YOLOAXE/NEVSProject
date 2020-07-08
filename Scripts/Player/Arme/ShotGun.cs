@@ -81,9 +81,9 @@ namespace DitzelGames.FastIK
                         }
                         NetworkServer.Spawn(io);
                         io.GetComponent<ImpactGlue>().AplyGlue(hit.transform.gameObject);
-                        if (hit.transform.gameObject.GetComponent<NavEnemie>())
+                        if (hit.transform.gameObject.GetComponent<EnemieMembre>())
                         {
-                            hit.transform.gameObject.GetComponent<NavEnemie>().ReceiveDamage(degatParBalle,base.wM.gameObject);
+                            hit.transform.gameObject.GetComponent<EnemieMembre>().ReceiveDamageMembre(degatParBalle,base.wM.gameObject);
                         }
                     }
                 }
