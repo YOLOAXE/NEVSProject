@@ -10,6 +10,7 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField] private string tagNamePlayer = "Player";
     [SerializeField] private string tagNotLocalPlayer = "nlPlayer";
     [SerializeField] private GameObject[] dfObjectChange = null;
+    [SerializeField] private GameObject[] SniperLayer = null;
     [SerializeField] private GameObject camRotate = null;
     [SerializeField] private GameObject rigSpine = null;
 
@@ -31,7 +32,11 @@ public class PlayerSetup : NetworkBehaviour
         else
         {
             transform.tag = tagNamePlayer;
-            foreach(GameObject o in dfObjectChange)
+            foreach (GameObject o in SniperLayer)
+            {
+                o.layer = LayerMask.NameToLayer("DrawAlways");
+            }
+            foreach (GameObject o in dfObjectChange)
             {
                 o.GetComponent<Renderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.ShadowsOnly;
             }

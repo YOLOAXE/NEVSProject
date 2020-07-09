@@ -105,8 +105,8 @@ namespace DitzelGames.FastIK
                 this.chargeurMunition--;
                 yield return null;
             }
-            base.wM.RpcSendMunition(base.idArme, this.currentMunition, this.chargeurMunition);
             yield return new WaitForSeconds(reloadTime);
+            base.wM.RpcSendMunition(base.idArme, this.currentMunition, this.chargeurMunition);
             isReload = false;
         }
 

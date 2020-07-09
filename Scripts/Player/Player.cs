@@ -28,6 +28,10 @@ namespace VHS
 
         void Start()
         {
+            if (!isLocalPlayer)
+            {
+                return;
+            }
             sO = GameObject.Find("SangOverlay").GetComponent<Image>();
             sOHit = GameObject.Find("SangOverlay2").GetComponent<Image>();
         }
@@ -59,21 +63,24 @@ namespace VHS
 
         private void OnChangeHealth(float oldHealth,float newhealth)
         {
-            float value = 1-(this.currenthealth / this.maxhealth);
-            sO.color = new Color(1, 1, 1, value >= 0.6f ? ((value-0.6f)/0.4f) : 0);
-            if (oldHealth > newhealth)
+            if (isLocalPlayer)
             {
-                StartCoroutine(hitDamage());
-            }
-            if(value < 0.6f)
-            {
-                heartAudioS.Stop();
-            }
-            else
-            {
-                heartAudioS.Play();
-                heartAudioS.pitch = (((value - 0.6f) / 0.4f)*0.3f) + 1;
-                heartAudioS.volume = ((value - 0.6f) / 0.4f)*0.3f;
+                float value = 1 - (this.currenthealth / this.maxhealth);
+                sO.color = new Color(1, 1, 1, value >= 0.6f ? ((value - 0.6f) / 0.4f) : 0);
+                if (oldHealth > newhealth)
+                {
+                    StartCoroutine(hitDamage());
+                }
+                if (value < 0.6f)
+                {
+                    heartAudioS.Stop();
+                }
+                else
+                {
+                    heartAudioS.Play();
+                    heartAudioS.pitch = (((value - 0.6f) / 0.4f) * 0.3f) + 1;
+                    heartAudioS.volume = ((value - 0.6f) / 0.4f) * 0.3f;
+                }
             }
         }
 
