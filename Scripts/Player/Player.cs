@@ -73,6 +73,7 @@ namespace VHS
             {
                 heartAudioS.Play();
                 heartAudioS.pitch = (((value - 0.6f) / 0.4f)*0.3f) + 1;
+                heartAudioS.volume = ((value - 0.6f) / 0.4f)*0.3f;
             }
         }
 

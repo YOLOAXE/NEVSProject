@@ -99,7 +99,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: -279.658, y: -39.907, z: -227.32399}
+        value: {x: -291.047, y: -31.098001, z: -216.23799}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -196,7 +196,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: -0.691, y: -6.81, z: 0.514}
+        value: {x: -0.053999864, y: -0.39200062, z: 0.08000022}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -207,23 +207,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     path: TargetHandRight/M40A3 Rifle_prefab
-  m_ScaleCurves:
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: {x: 12.321225, y: 8.5156, z: 18.354233}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: TargetHandRight/Shotgun
+  m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
   m_SampleRate: 60
@@ -316,13 +300,6 @@ AnimationClip:
       script: {fileID: 0}
       typeID: 4
       customType: 4
-      isPPtrCurve: 0
-    - serializedVersion: 2
-      path: 4142242293
-      attribute: 3
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
       isPPtrCurve: 0
     pptrCurveMapping: []
   m_AnimationClipSettings:
@@ -921,64 +898,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 12.321225
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalScale.x
-    path: TargetHandRight/Shotgun
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 8.5156
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalScale.y
-    path: TargetHandRight/Shotgun
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 18.354233
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalScale.z
-    path: TargetHandRight/Shotgun
-    classID: 4
-    script: {fileID: 0}
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: -0.691
+        value: -0.053999864
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -997,7 +917,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -6.81
+        value: -0.39200062
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1016,7 +936,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.514
+        value: 0.08000022
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1035,7 +955,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -279.658
+        value: -291.047
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1054,7 +974,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -39.907
+        value: -31.098001
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1073,7 +993,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -227.32399
+        value: -216.23799
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1095,7 +1015,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: TargetHandRight/M40A3 Rifle_prefab
+    path: TargetHandRight/Shotgun
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1105,7 +1025,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: TargetHandRight/M40A3 Rifle_prefab
+    path: TargetHandRight/Shotgun
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1115,7 +1035,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: TargetHandRight/M40A3 Rifle_prefab
+    path: TargetHandRight/Shotgun
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1245,7 +1165,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: TargetHandRight/Shotgun
+    path: TargetHandRight/M40A3 Rifle_prefab
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1255,7 +1175,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: TargetHandRight/Shotgun
+    path: TargetHandRight/M40A3 Rifle_prefab
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1265,7 +1185,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: TargetHandRight/Shotgun
+    path: TargetHandRight/M40A3 Rifle_prefab
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
