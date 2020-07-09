@@ -110,7 +110,7 @@ namespace DitzelGames.FastIK
         {
             handObject.transform.eulerAngles = pivotCam.transform.eulerAngles;
             if (!isLocalPlayer) { return; }
-            if (Input.GetButton("Fire1"))
+            if (Input.GetButton("Fire1") || Input.GetButtonUp("Fire1"))
             {
                 StartCoroutine(wI[currentIDArme].getArmeScript().shoot());
             }
