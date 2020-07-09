@@ -29,14 +29,14 @@ namespace VHS
         public override void attack()
         {
             base.agent.isStopped = true;
-            if (Vector3.Distance(this.transform.position, base.targetPlayer.transform.position) > base.huntingDistance)
+            if (base.targetPlayer)
             {
-                base.agent.SetDestination(base.targetPlayer.transform.position);
-                base.agent.isStopped = false;              
-            }
-            else
-            {
-                if(base.targetPlayer)
+                if (Vector3.Distance(this.transform.position, base.targetPlayer.transform.position) > base.huntingDistance)
+                {
+                    base.agent.SetDestination(base.targetPlayer.transform.position);
+                    base.agent.isStopped = false;
+                }
+                else
                 {
                     this.shootPoint.transform.LookAt(base.targetPlayer.transform.position + new Vector3(0f, 0.5f, 0f));
                     StartCoroutine(ShootIEnum());
@@ -55,6 +55,7 @@ namespace VHS
             if(!this.shoot)
             {
                 this.shoot = true;
+                base.m_animator.SetBool("fire", true);
                 for (byte i = 0; i < this.balleparTire; i++)
                 {
                     Vector3 direction = Random.insideUnitCircle * this.scale;
@@ -63,11 +64,18 @@ namespace VHS
                     this.ray = new Ray(this.shootPoint.transform.position, direction);
                     if (Physics.Raycast(this.ray, out hit, Mathf.Infinity, this.lm))
                     {
-
+                        if(hit.transform.tag == "Player" || hit.transform.tag == "nlPlayer")
+                        {
+                            hit.transform.GetComponent<Player>().ReceiveDamage(degatParBalle);
+                        }
                     }
                     yield return new WaitForSeconds(bulletRate);
                 }
+                base.m_animator.SetBool("aim", true);
+                base.m_animator.SetBool("fire", false);
                 yield return new WaitForSeconds(shootRate);
+                base.m_animator.SetBool("aim", false);
+
                 this.shoot = false;
             }
         }

@@ -38,7 +38,7 @@ namespace VHS
         private bool isDead = false;
 
         [Header("Animation")]
-        [SerializeField] private Animator m_animator = null;
+        [SerializeField] protected Animator m_animator = null;
 
         #region Start & Stop Callbacks
 
@@ -134,7 +134,7 @@ namespace VHS
         private IEnumerator dead()
         {
             ps.transform.eulerAngles = new Vector3(0.0f, 150.0f, 0.0f);
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(3f);            
             ps.Play();
             yield return new WaitForSeconds(tempsMort);
             NetworkServer.Destroy(gameObject);
