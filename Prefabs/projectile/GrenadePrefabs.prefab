@@ -123,8 +123,8 @@ MonoBehaviour:
   destroyAfter: 8
   explodedAfter: 4
   explosionDegatBase: 120
-  explosionForce: 9000
-  explosionRadius: 8
+  explosionForce: 10000
+  explosionRadius: 7
   ShakeRadius: 35
   shakeDuration: 0.6
   shakeMagnitude: 0.2

@@ -13,6 +13,7 @@ namespace DitzelGames.FastIK
         [SerializeField] private int activePourcentage = 0;
         [SerializeField] private float increasePRate = 0.8f;
         [SerializeField] private bool drawtxt = false;
+        [SerializeField] private float healing = 60f;
         [Header("Soin Overlaps")]
         [SerializeField] private float radiusSoin = 2f;
 
@@ -51,6 +52,7 @@ namespace DitzelGames.FastIK
                 if (activePourcentage >= 100)
                 {
                     this.activePourcentage = 0;
+                    Target.GetComponent<Player>().Receiveheal(healing);
                     base.wM.RpcSendMunition(base.idArme, this.activePourcentage, 0);
                 }
             }

@@ -124,6 +124,22 @@ namespace VHS
                 yield return new WaitForSeconds(regenneRate);
             }
         }
+
+        public void Receiveheal(float heal)
+        {
+            if (isServer)
+            {
+                if(this.currenthealth + heal > this.maxhealth)
+                {
+                    this.currenthealth = this.maxhealth;  
+                }
+                else
+                {
+                    this.currenthealth += heal;
+                }                
+            }
+        }
+
         public void ReceiveDamage(float damage)
         {
             if (isServer)
