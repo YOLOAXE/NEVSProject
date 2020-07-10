@@ -2444,18 +2444,21 @@ MonoBehaviour:
     m_noAmmo: {fileID: 0}
     m_endReload: {fileID: 0}
     ps: {fileID: 2691670418500609092}
+    psAmmo: {fileID: 0}
   - name: Death
     m_Shoot: {fileID: 8300000, guid: ae03713c67127a041a2946dcb270676b, type: 3}
     m_reload: {fileID: 0}
     m_noAmmo: {fileID: 8300000, guid: 954ca465de843c2478ae1ef7c157329c, type: 3}
     m_endReload: {fileID: 0}
     ps: {fileID: 0}
+    psAmmo: {fileID: 0}
   - name: shot
     m_Shoot: {fileID: 0}
     m_reload: {fileID: 0}
     m_noAmmo: {fileID: 0}
     m_endReload: {fileID: 0}
     ps: {fileID: 8970144828212884475}
+    psAmmo: {fileID: 0}
 --- !u!1 &1082271958607865399
 GameObject:
   m_ObjectHideFlags: 0
@@ -32927,7 +32930,7 @@ MonoBehaviour:
   shootPoint: {fileID: 8865828816256032865}
   lm:
     serializedVersion: 2
-    m_Bits: 823
+    m_Bits: 2871
   shootRate: 0.8
   bulletRate: 0.1
   shoot: 0

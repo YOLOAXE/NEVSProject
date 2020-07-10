@@ -13,6 +13,8 @@ namespace DitzelGames.FastIK
         [SerializeField] private int activePourcentage = 0;
         [SerializeField] private float increasePRate = 0.8f;
         [SerializeField] private bool drawtxt = false;
+        [Header("Soin Overlaps")]
+        [SerializeField] private float radiusSoin = 2f;
 
         void Start()
         {
@@ -23,39 +25,71 @@ namespace DitzelGames.FastIK
         {
             if (this.activePourcentage >= 100 && Input.GetButtonDown("Fire1"))
             {
-                this.activePourcentage = 0;
-                base.netAnim.SetTrigger("shootOneShot");
-                base.wM.CmdTire();
+                GameObject Target = GetPlayerSoin();
+                if (Target)
+                {
+                    base.netAnim.SetTrigger("shootOneShot");
+                    base.wM.CmdTire();
+                }
+                else
+                {
+                    base.netAnim.SetTrigger("reloadOneShot");
+                }
                 yield return null;
+            }
+            else if (Input.GetButtonDown("Fire1"))
+            {
+                base.netAnim.SetTrigger("reloadOneShot");
             }
         }
 
         public override void CmdSendTire()
         {
-            if (activePourcentage >= 100)
+            GameObject Target = GetPlayerSoin();
+            if (Target)
             {
-                this.activePourcentage = 0;
+                if (activePourcentage >= 100)
+                {
+                    this.activePourcentage = 0;
+                    base.wM.RpcSendMunition(base.idArme, this.activePourcentage, 0);
+                }
             }
+        }
+
+        private GameObject GetPlayerSoin()
+        {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, this.radiusSoin);
+            foreach (Collider c in colliders)
+            {
+                if (c.transform.tag == "Player" || c.transform.tag == "nlPlayer")
+                {
+                    if (c.gameObject != base.wM.gameObject)
+                    {
+                        return c.gameObject;
+                    }
+                }
+            }
+            return null;
         }
 
         IEnumerator Regenne()
         {
-                while (true)
+            while (true)
+            {
+                if (this.activePourcentage < 100)
                 {
-                    if (this.activePourcentage < 100)
+                    this.activePourcentage++;
+                    if (drawtxt)
                     {
-                        this.activePourcentage++;
-                        if (drawtxt)
-                        {
-                            base.wM.SetTextMun(this.activePourcentage.ToString() + "%");
-                        }
+                        base.wM.SetTextMun(this.activePourcentage.ToString() + "%");
                     }
-                    if (isServer && this.activePourcentage % 10 == 0)
-                    {
-                        base.wM.RpcSendMunition(base.idArme, this.activePourcentage, 0);
-                    }
-                    yield return new WaitForSeconds(this.increasePRate);
                 }
+                if (isServer && this.activePourcentage % 10 == 0)
+                {
+                    base.wM.RpcSendMunition(base.idArme, this.activePourcentage, 0);
+                }
+                yield return new WaitForSeconds(this.increasePRate);
+            }
 
             yield return null;
         }

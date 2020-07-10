@@ -11,6 +11,7 @@ public class ArmeEffect
     [SerializeField] private AudioClip m_noAmmo = null;
     [SerializeField] private AudioClip m_endReload = null;
     [SerializeField] private ParticleSystem ps = null;
+    [SerializeField] private ParticleSystem psAmmo = null;
 
     public AudioClip getShootSound()
     {
@@ -35,6 +36,11 @@ public class ArmeEffect
     public ParticleSystem getPS()
     {
         return this.ps;
+    }
+
+    public ParticleSystem getPSAmmo()
+    {
+        return this.psAmmo;
     }
 }
 
@@ -71,6 +77,11 @@ public class ArmeEffetManager : MonoBehaviour
     public void PlayPS(int id)
     {
         AE[id].getPS().Play();
+    }
+
+    public void PlayPSAmmo(int id)
+    {
+        AE[id].getPSAmmo().Play();
     }
 
     public void StopPS(int id)
