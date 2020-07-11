@@ -36813,10 +36813,10 @@ MonoBehaviour:
   currentMunition: 16
   chargeurMunition: 140
   maxMunition: 17
-  shootRate: 0.4
+  shootRate: 0.2
   reloadTime: 1
-  magnitudeShakeShoot: 0.1
-  timeShakeShoot: 0.1
+  magnitudeShakeShoot: 0.05
+  timeShakeShoot: 0.05
   layerImpactDegat:
     serializedVersion: 2
     m_Bits: 5431
