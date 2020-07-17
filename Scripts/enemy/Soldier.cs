@@ -14,6 +14,8 @@ namespace VHS
         [SerializeField] private float shootRate = 0.5f;
         [SerializeField] private float bulletRate = 0.1f;
         [SerializeField] private bool shoot = false;
+        [SerializeField] private bool attaque = false;
+        private float distance = 0f;
         [Header("Raycast Setting")]
         [SerializeField] private int balleparTire = 10;
  
@@ -29,16 +31,19 @@ namespace VHS
         public override void attack()
         {
             base.agent.isStopped = true;
+            this.distance = Vector3.Distance(this.transform.position, base.targetPlayer.transform.position);
             if (base.targetPlayer)
             {
-                if (Vector3.Distance(this.transform.position, base.targetPlayer.transform.position) > base.huntingDistance)
+                if ((distance > base.huntingDistance && !attaque) || (distance > (base.huntingDistance*1.5f) && attaque))
                 {
-                    base.agent.SetDestination(base.targetPlayer.transform.position);
-                    base.agent.isStopped = false;
+                        base.agent.SetDestination(base.targetPlayer.transform.position);
+                        base.agent.isStopped = false;
+                        attaque = false;       
                 }
                 else
                 {
                     this.shootPoint.transform.LookAt(base.targetPlayer.transform.position + new Vector3(0f, 0.5f, 0f));
+                    attaque = true;
                     StartCoroutine(ShootIEnum());
                 }
             }
