@@ -56,7 +56,7 @@ namespace DitzelGames.FastIK
             if (this.chargeurMunition > 0 && this.currentMunition < this.maxMunition && !isReload)
             {
                 isReload = true;
-                m_animator.SetBool("reloadOneShot", true);
+                base.netAnim.SetTrigger("reloadOneShot");
                 base.wM.CmdReload();
             }
             yield return null;
@@ -114,7 +114,6 @@ namespace DitzelGames.FastIK
             if (this.chargeurMunition == 0 || this.currentMunition == this.maxMunition)
             {
                 this.isReload = false;
-                m_animator.SetBool("reload", false);
             }
         }
 

@@ -7,9 +7,13 @@ public class ArmeEffect
 {
     [SerializeField] private string name = ""; 
     [SerializeField] private AudioClip m_Shoot = null;
+    [SerializeField] [Range(0.0f, 1.0f)] private float volume_m_Shoot = 0.1f;
     [SerializeField] private AudioClip m_reload = null;
+    [SerializeField] [Range(0.0f, 1.0f)] private float volume_m_reload = 0.1f;
     [SerializeField] private AudioClip m_noAmmo = null;
+    [SerializeField] [Range(0.0f, 1.0f)] private float volume_m_noAmmo = 0.1f;
     [SerializeField] private AudioClip m_endReload = null;
+    [SerializeField] [Range(0.0f, 1.0f)] private float volume_m_endReload = 0.1f;
     [SerializeField] private ParticleSystem ps = null;
     [SerializeField] private ParticleSystem psAmmo = null;
 
@@ -42,6 +46,26 @@ public class ArmeEffect
     {
         return this.psAmmo;
     }
+
+    public float getVolume_ShootSound()
+    {
+        return this.volume_m_Shoot;
+    }
+
+    public float getVolume_ReloadSound()
+    {
+        return this.volume_m_reload;
+    }
+
+    public float getVolume_EndReload()
+    {
+        return this.volume_m_endReload;
+    }
+
+    public float getVolume_NoAmmoSound()
+    {
+        return this.volume_m_noAmmo;
+    }
 }
 
 public class ArmeEffetManager : MonoBehaviour
@@ -53,24 +77,28 @@ public class ArmeEffetManager : MonoBehaviour
     public void shootSound(int id)
     {
         m_audioSource.clip = AE[id].getShootSound();
+        m_audioSource.volume = AE[id].getVolume_ShootSound();
         m_audioSource.PlayOneShot(m_audioSource.clip);
     }
 
     public void reloadSound(int id)
     {
         m_audioSource.clip = AE[id].getReloadSound();
+        m_audioSource.volume = AE[id].getVolume_ReloadSound();
         m_audioSource.PlayOneShot(m_audioSource.clip);
     }
 
     public void endReloadSound(int id)
     {
         m_audioSource.clip = AE[id].getEndReload();
+        m_audioSource.volume = AE[id].getVolume_EndReload();
         m_audioSource.PlayOneShot(m_audioSource.clip);
     }
 
     public void noAmmoSound(int id)
     {
         m_audioSource.clip = AE[id].getNoAmmoSound();
+        m_audioSource.volume = AE[id].getVolume_NoAmmoSound();
         m_audioSource.PlayOneShot(m_audioSource.clip);
     }
 

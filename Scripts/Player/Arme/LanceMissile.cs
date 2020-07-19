@@ -9,24 +9,28 @@ namespace DitzelGames.FastIK
     {
         [Header("Arme Setting")]
         [SerializeField] private Animator m_animator = null;
-        [SerializeField] private int currentMunition = 10;
+        [SerializeField] private int currentMunition = 1;
+        [SerializeField] private int chargeurMunition = 10;
+        [SerializeField] private int maxMunition = 1;
         [SerializeField] private float shootRate = 1.2f;
+        [SerializeField] private float reloadTime = 1.5f;
         [Header("Shoot Setting")]
         [SerializeField] private GameObject spawnPoint = null;
         [SerializeField] private GameObject projectilSpawn = null;
         [SerializeField] private GameObject targetCamera = null;
-        private bool isShoot = false;
+        [SerializeField] private bool isShoot = false;
+        [SerializeField] private bool isReload = false;
 
         public override IEnumerator shoot()
         {
             if (this.currentMunition > 0)
             {
-                if (!isShoot && Input.GetButtonDown("Fire1"))
+                if (!isShoot && Input.GetButtonDown("Fire1") && !this.isReload)
                 {
                     isShoot = true;
                     base.netAnim.SetTrigger("shootOneShot");
-                    yield return new WaitForSeconds(this.shootRate);
                     base.wM.CmdTire();
+                    yield return new WaitForSeconds(this.shootRate);
                     isShoot = false;
                 }
             }
@@ -37,38 +41,84 @@ namespace DitzelGames.FastIK
             yield return null;
         }
 
+        public override IEnumerator reload()
+        {
+            if (this.chargeurMunition > 0 && this.currentMunition < this.maxMunition && !isReload)
+            {
+                spawnPoint.GetComponent<MeshRenderer>().enabled = false;
+                isReload = true;
+                base.netAnim.SetTrigger("reloadOneShot");
+                base.wM.CmdReload();
+            }
+            yield return null;
+        }
+
+        public override IEnumerator CmdSendReload()
+        {
+            isReload = true;
+            for (int i = 0; i < this.maxMunition && this.chargeurMunition > 0 && this.currentMunition < this.maxMunition; i++)
+            {
+                yield return null;
+                this.currentMunition++;
+                this.chargeurMunition--;                
+            }
+            yield return new WaitForSeconds(this.reloadTime);
+            base.wM.RpcSendMunition(base.idArme, this.currentMunition, this.chargeurMunition);
+            isReload = false;
+        }
+
         public override void OnChangeCM(int mun, int charg, bool draw)
         {
             this.currentMunition = mun;
-            m_animator.SetBool("reload", mun <= 0);
+            this.chargeurMunition = charg;
             if (draw)
             {
-                base.wM.SetTextMun(this.currentMunition.ToString());
+                base.wM.SetTextMun(this.chargeurMunition.ToString());
+            }
+            if (this.chargeurMunition == 0 || this.currentMunition == this.maxMunition)
+            {
+                spawnPoint.GetComponent<MeshRenderer>().enabled = true;
+                this.isReload = false;
+            }
+            else
+            {
+                StartCoroutine(reload());
+            }
+            if(this.currentMunition == 0)
+            {
+                spawnPoint.GetComponent<MeshRenderer>().enabled = false;
             }
         }
 
         public override void CmdSendTire()
         {
-            if (currentMunition > 0)
+            if (currentMunition > 0 && !isReload)
             {
-                GameObject io = Instantiate(projectilSpawn, spawnPoint.transform.position, Quaternion.LookRotation(transform.position - spawnPoint.transform.position, Vector3.forward));
+                GameObject io = Instantiate(projectilSpawn, spawnPoint.transform.position, Quaternion.LookRotation(this.targetCamera.transform.TransformDirection(Vector3.forward)));
                 NetworkServer.Spawn(io);
                 io.GetComponent<MissileExplosion>().SetOwner(base.wM.gameObject);
                 this.currentMunition--;
-                base.wM.RpcSendMunition(base.idArme, this.currentMunition, 0);
+                base.wM.RpcSendMunition(base.idArme, this.currentMunition, this.chargeurMunition);
             }
         }
 
         public override void OnSelectWeapon()
         {
-            base.wM.SetTextMun(this.currentMunition.ToString());
-            m_animator.SetBool("reload", this.currentMunition <= 0);
+            base.wM.SetTextMun(this.chargeurMunition.ToString());
+            if (this.currentMunition <= 0)
+            {
+                base.netAnim.SetTrigger("reloadOneShot");
+            }
+            if (this.currentMunition == 0)
+            {
+                spawnPoint.GetComponent<MeshRenderer>().enabled = false;
+            }
         }
 
         public override void OnChangeWeapon()
         {
             base.wM.SetTextMun("");
-            m_animator.SetBool("reload", false);
+            m_animator.SetBool("reloadOneShot", false);
         }
     }
 }
