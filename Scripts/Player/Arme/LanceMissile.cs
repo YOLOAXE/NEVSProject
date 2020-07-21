@@ -18,6 +18,8 @@ namespace DitzelGames.FastIK
         [SerializeField] private GameObject spawnPoint = null;
         [SerializeField] private GameObject projectilSpawn = null;
         [SerializeField] private GameObject targetCamera = null;
+        [SerializeField] private float magnitudeShakeShoot = 0.1f;
+        [SerializeField] private float timeShakeShoot = 0.1f;
         [SerializeField] private bool isShoot = false;
         [SerializeField] private bool isReload = false;
 
@@ -30,6 +32,7 @@ namespace DitzelGames.FastIK
                     isShoot = true;
                     base.netAnim.SetTrigger("shootOneShot");
                     base.wM.CmdTire();
+                    base.wM.StartcShake(this.magnitudeShakeShoot, this.timeShakeShoot);
                     yield return new WaitForSeconds(this.shootRate);
                     isShoot = false;
                 }
@@ -105,13 +108,13 @@ namespace DitzelGames.FastIK
         public override void OnSelectWeapon()
         {
             base.wM.SetTextMun(this.chargeurMunition.ToString());
-            if (this.currentMunition <= 0)
-            {
-                base.netAnim.SetTrigger("reloadOneShot");
-            }
             if (this.currentMunition == 0)
             {
                 spawnPoint.GetComponent<MeshRenderer>().enabled = false;
+                if(this.chargeurMunition > 0)
+                {
+                    StartCoroutine(reload());
+                }
             }
         }
 

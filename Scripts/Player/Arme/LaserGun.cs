@@ -14,7 +14,7 @@ namespace DitzelGames.FastIK
         [SerializeField] private int currentMunition = 0;
         [SerializeField] private int chargeurMunition = 0;
         [SerializeField] private int maxMunition = 0;
-        [SerializeField] private float shootRate = 0.2f;
+        [SerializeField] private float shootRate = 0.1f;
         [SerializeField] private float reloadTime = 1f;
         [SerializeField] private float magnitudeShakeShoot = 0.1f;
         [SerializeField] private float timeShakeShoot = 0.5f;
@@ -25,6 +25,7 @@ namespace DitzelGames.FastIK
         [SerializeField] private float Z = 10;
         [SerializeField] private float scale = 0.1f;
         [SerializeField] private GameObject targetCamera = null;
+        [SerializeField] private GameObject laserPs = null;
         private RaycastHit hit;
         private Ray ray;
         private bool isShoot = false;
@@ -80,11 +81,20 @@ namespace DitzelGames.FastIK
                 this.ray = new Ray(this.targetCamera.transform.position, direction);
                 if (Physics.Raycast(this.ray, out hit, Mathf.Infinity, this.layerImpactDegat))
                 {
-                    GameObject io = Instantiate(base.wM.getImpactByTag(hit.transform.tag), hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                    GameObject io = null;
+                    if (hit.transform.tag == "Ennemie")
+                    {
+                        io = Instantiate(base.wM.getImpactByTag(hit.transform.tag), hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                    }
+                    else
+                    {
+                        io = Instantiate(base.wM.getImpactByTag("LaserImpact"), hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal));
+                    }
                     if (hit.rigidbody)
                     {
                         hit.rigidbody.AddForce(this.ray.direction * hitForceTire);
                     }
+                    laserPs.transform.LookAt(hit.point);
                     NetworkServer.Spawn(io);
                     io.GetComponent<ImpactGlue>().AplyGlue(hit.transform.gameObject);
                     if (hit.transform.gameObject.GetComponent<EnemieMembre>())
