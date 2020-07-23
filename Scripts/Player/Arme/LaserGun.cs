@@ -18,6 +18,7 @@ namespace DitzelGames.FastIK
         [SerializeField] private float reloadTime = 1f;
         [SerializeField] private float magnitudeShakeShoot = 0.1f;
         [SerializeField] private float timeShakeShoot = 0.5f;
+        [SerializeField] private float multAmmo = 1.0f;
         [Header("Arme Raycast")]
         [SerializeField] private LayerMask layerImpactDegat = 0;
         [SerializeField] private float hitForceTire = 1000;
@@ -33,9 +34,9 @@ namespace DitzelGames.FastIK
 
         public override IEnumerator shoot()
         {
-            if (currentMunition > 0)
+            if (currentMunition > 0 && !isReload)
             {
-                if (!isShoot && !isReload && Input.GetButton("Fire1"))
+                if (!isShoot && Input.GetButton("Fire1"))
                 {
                     isShoot = true;
                     m_animator.SetBool("shootContinue",true);
@@ -105,6 +106,18 @@ namespace DitzelGames.FastIK
                 this.currentMunition--;
                 base.wM.RpcSendMunition(base.idArme, this.currentMunition, this.chargeurMunition);
             }
+        }
+
+        public override bool AddMunition(int munCharg)
+        {
+            this.chargeurMunition += (int)(munCharg * multAmmo);
+            base.wM.RpcSendMunition(base.idArme, this.currentMunition, this.chargeurMunition);
+            return true;
+        }
+
+        public override int GetMultByAddMun(int munCharg)
+        {
+            return (int)(munCharg * multAmmo);
         }
 
         public override IEnumerator CmdSendReload()

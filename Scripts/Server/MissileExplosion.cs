@@ -68,6 +68,7 @@ namespace DitzelGames.FastIK
         [Server]
         void ExplosionPhysicsDamage()
         {
+            hasExplose = true;
             Invoke(nameof(DestroySelf), destroyAfter);
             GetComponent<Rigidbody>().isKinematic = true;
             Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);

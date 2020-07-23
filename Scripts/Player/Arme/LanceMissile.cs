@@ -14,6 +14,7 @@ namespace DitzelGames.FastIK
         [SerializeField] private int maxMunition = 1;
         [SerializeField] private float shootRate = 1.2f;
         [SerializeField] private float reloadTime = 1.5f;
+        [SerializeField] private float multAmmo = 1.0f;
         [Header("Shoot Setting")]
         [SerializeField] private GameObject spawnPoint = null;
         [SerializeField] private GameObject projectilSpawn = null;
@@ -103,6 +104,18 @@ namespace DitzelGames.FastIK
                 this.currentMunition--;
                 base.wM.RpcSendMunition(base.idArme, this.currentMunition, this.chargeurMunition);
             }
+        }
+
+        public override bool AddMunition(int munCharg)
+        {
+            this.chargeurMunition += (int)(munCharg * multAmmo);
+            base.wM.RpcSendMunition(base.idArme, this.currentMunition, this.chargeurMunition);
+            return true;
+        }
+
+        public override int GetMultByAddMun(int munCharg)
+        {
+            return (int)(munCharg * multAmmo);
         }
 
         public override void OnSelectWeapon()

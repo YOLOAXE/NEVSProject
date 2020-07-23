@@ -13,8 +13,9 @@ namespace DitzelGames.FastIK
         public virtual IEnumerator shoot() { yield return null; }
         public virtual IEnumerator reload() { yield return null; }
         public virtual void CmdSendTire() {}
-        public virtual void CmdAddMunition(int munCharg) {}
-        public virtual void AimArme(bool state) {}
+        public virtual bool AddMunition(int munCharg) { return false; }
+        public virtual int GetMultByAddMun(int munCharg) { return 0; }
+        public virtual void AimArme(bool state) { }
         public virtual void OnChangeWeapon() { }
         public virtual void OnSelectWeapon() { }
         public virtual void OnChangeCM(int mun,int charg,bool draw) { }

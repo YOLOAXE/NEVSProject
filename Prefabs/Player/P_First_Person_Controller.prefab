@@ -5702,9 +5702,10 @@ MonoBehaviour:
   chargeurMunition: 50
   maxMunition: 100
   shootRate: 0.08
-  reloadTime: 1
-  magnitudeShakeShoot: 0.05
+  reloadTime: 1.5
+  magnitudeShakeShoot: 0.03
   timeShakeShoot: 0.1
+  multAmmo: 2
   layerImpactDegat:
     serializedVersion: 2
     m_Bits: 5431
@@ -11099,13 +11100,14 @@ MonoBehaviour:
   netAnim: {fileID: 4986118322099195753}
   idArme: 3
   m_animator: {fileID: 5553869646443040326}
-  currentMunition: 1
-  chargeurMunition: 200
+  currentMunition: 4
+  chargeurMunition: 10
   maxMunition: 4
   shootRate: 0.8
   reloadTimeParDouille: 0.5
   magnitudeShakeShoot: 0.15
   timeShakeShoot: 0.15
+  multAmmo: 0.5
   layerImpactDegat:
     serializedVersion: 2
     m_Bits: 5431
@@ -26013,13 +26015,14 @@ MonoBehaviour:
   netAnim: {fileID: 4986118322099195753}
   idArme: 5
   m_animator: {fileID: 5553869646443040326}
-  currentMunition: 10
-  chargeurMunition: 190
+  currentMunition: 50
+  chargeurMunition: 50
   maxMunition: 50
-  shootRate: 0.15
+  shootRate: 0.1
   reloadTime: 1.2
   magnitudeShakeShoot: 0.03
   timeShakeShoot: 0.02
+  multAmmo: 3
   layerImpactDegat:
     serializedVersion: 2
     m_Bits: 5383
@@ -26129,8 +26132,9 @@ MonoBehaviour:
   netAnim: {fileID: 4986118322099195753}
   idArme: 4
   m_animator: {fileID: 5553869646443040326}
-  currentMunition: 50
+  currentMunition: 4
   shootRate: 0.6
+  multAmmo: 0.3
   forceSendGrenade: 3000
   grenadeSpawn: {fileID: 737404301218681614, guid: a0b1176c5ba43ae4bbc1ba1eaa6922e1,
     type: 3}
@@ -41887,13 +41891,14 @@ MonoBehaviour:
   netAnim: {fileID: 4986118322099195753}
   idArme: 7
   m_animator: {fileID: 5553869646443040326}
-  currentMunition: 16
-  chargeurMunition: 140
+  currentMunition: 17
+  chargeurMunition: 34
   maxMunition: 17
   shootRate: 0.2
   reloadTime: 1
   magnitudeShakeShoot: 0.05
   timeShakeShoot: 0.05
+  multAmmo: 1.7
   layerImpactDegat:
     serializedVersion: 2
     m_Bits: 5431
@@ -43885,7 +43890,7 @@ MonoBehaviour:
     psAmmo: {fileID: 0}
   - name: Smg
     m_Shoot: {fileID: 8300000, guid: 2b34256a79f8fd74c8d5d091935e8110, type: 3}
-    volume_m_Shoot: 0.1
+    volume_m_Shoot: 0.15
     m_reload: {fileID: 8300000, guid: 4de7d21a9d9a24744851f05a432c362f, type: 3}
     volume_m_reload: 0.1
     m_noAmmo: {fileID: 8300000, guid: f47a4f6a3bc89c5498f1fe0b0c88f42f, type: 3}
@@ -43930,8 +43935,8 @@ MonoBehaviour:
   - name: LaserGun
     m_Shoot: {fileID: 8300000, guid: 914a94053aab80e4f9b81882d682f555, type: 3}
     volume_m_Shoot: 0.3
-    m_reload: {fileID: 0}
-    volume_m_reload: 0.1
+    m_reload: {fileID: 8300000, guid: b5b91a566e041f245a521912d3cf0960, type: 3}
+    volume_m_reload: 0.4
     m_noAmmo: {fileID: 8300000, guid: f47a4f6a3bc89c5498f1fe0b0c88f42f, type: 3}
     volume_m_noAmmo: 0.1
     m_endReload: {fileID: 8300000, guid: b0372bb6e23a14e419833f05918c9d6a, type: 3}
@@ -49560,10 +49565,11 @@ MonoBehaviour:
   idArme: 8
   m_animator: {fileID: 5553869646443040326}
   currentMunition: 1
-  chargeurMunition: 10
+  chargeurMunition: 2
   maxMunition: 1
-  shootRate: 2.2
+  shootRate: 2.5
   reloadTime: 1.5
+  multAmmo: 0.2
   spawnPoint: {fileID: 6397038280565856862}
   projectilSpawn: {fileID: 4617145246633603672, guid: 40c0d94bd096b6a4bb70b8083b4e09ad,
     type: 3}
@@ -60769,56 +60775,87 @@ MonoBehaviour:
     freeHand: 0101
     arme: {fileID: 2088601639760011850}
     a_scriptArme: {fileID: 2356015164442278625}
+    isUnlock: 1
+    weaponImage: {fileID: 21300000, guid: ada8d0818e5986f46b28da448f4144ac, type: 3}
+    munImage: {fileID: 21300000, guid: ada8d0818e5986f46b28da448f4144ac, type: 3}
   - Name: Lampe Torche
     idArme: 1
     freeHand: 0100
     arme: {fileID: 2710715624082208206}
     a_scriptArme: {fileID: 4936580902240543863}
+    isUnlock: 0
+    weaponImage: {fileID: 21300000, guid: 81d128ea5a1e84543a3a819de580b10a, type: 3}
+    munImage: {fileID: 21300000, guid: 81d128ea5a1e84543a3a819de580b10a, type: 3}
   - Name: ShotGun
     idArme: 2
     freeHand: 0000
     arme: {fileID: 8281076812720032966}
     a_scriptArme: {fileID: 2228224769791705464}
+    isUnlock: 0
+    weaponImage: {fileID: 21300012, guid: 71a76f9614af5b24fb7aa92b280b616e, type: 3}
+    munImage: {fileID: 21300016, guid: 3eef3d408adacd344b1d8f10e9dad000, type: 3}
   - Name: Sniper
     idArme: 3
     freeHand: 0000
     arme: {fileID: 1896287129459010109}
     a_scriptArme: {fileID: 2913830022785317943}
+    isUnlock: 0
+    weaponImage: {fileID: 21300020, guid: 71a76f9614af5b24fb7aa92b280b616e, type: 3}
+    munImage: {fileID: 21300010, guid: 3eef3d408adacd344b1d8f10e9dad000, type: 3}
   - Name: Grenade
     idArme: 4
     freeHand: 0100
     arme: {fileID: 2624322105444330381}
     a_scriptArme: {fileID: 6856066592309991127}
+    isUnlock: 0
+    weaponImage: {fileID: 21300036, guid: 3eef3d408adacd344b1d8f10e9dad000, type: 3}
+    munImage: {fileID: 21300036, guid: 3eef3d408adacd344b1d8f10e9dad000, type: 3}
   - Name: Assault
     idArme: 5
     freeHand: 0000
     arme: {fileID: 2405776417089091262}
     a_scriptArme: {fileID: 2405776417089091264}
+    isUnlock: 0
+    weaponImage: {fileID: 21300046, guid: 71a76f9614af5b24fb7aa92b280b616e, type: 3}
+    munImage: {fileID: 21300006, guid: 3eef3d408adacd344b1d8f10e9dad000, type: 3}
   - Name: Seringue
     idArme: 6
     freeHand: 0100
     arme: {fileID: 6184157772362219135}
     a_scriptArme: {fileID: 3927215318327940408}
+    isUnlock: 0
+    weaponImage: {fileID: 21300000, guid: 06c46f542d303814b961fb2004519379, type: 3}
+    munImage: {fileID: 21300050, guid: 3eef3d408adacd344b1d8f10e9dad000, type: 3}
   - Name: HandGun
     idArme: 7
     freeHand: 0100
     arme: {fileID: 3835153633559076750}
     a_scriptArme: {fileID: 284064351038125946}
+    isUnlock: 0
+    weaponImage: {fileID: 21300022, guid: 71a76f9614af5b24fb7aa92b280b616e, type: 3}
+    munImage: {fileID: 21300008, guid: 3eef3d408adacd344b1d8f10e9dad000, type: 3}
   - Name: RPG7
     idArme: 8
     freeHand: 0000
     arme: {fileID: 6414185788686496040}
     a_scriptArme: {fileID: 2734458544683515659}
+    isUnlock: 0
+    weaponImage: {fileID: 21300032, guid: 71a76f9614af5b24fb7aa92b280b616e, type: 3}
+    munImage: {fileID: 21300032, guid: 71a76f9614af5b24fb7aa92b280b616e, type: 3}
   - Name: LaserGun
     idArme: 9
     freeHand: 0000
     arme: {fileID: 919132149214505037}
     a_scriptArme: {fileID: 6298573746836909187}
+    isUnlock: 0
+    weaponImage: {fileID: 21300000, guid: 1e8c9b4e324e2144cac50be87eaa811a, type: 3}
+    munImage: {fileID: 21300000, guid: 3eef3d408adacd344b1d8f10e9dad000, type: 3}
   pivotCam: {fileID: 2814771591265964727}
   handObject: {fileID: 6408688374978601300}
   handAnimator: {fileID: 5553869646443040326}
   m_audioSource: {fileID: 5968643768834131879}
   clipChangeArme: {fileID: 8300000, guid: f881ef76ff277cb4d85f5be019fd38c0, type: 3}
+  clipGetArme: {fileID: 8300000, guid: 6984060827d520a4193e6ea33e84408f, type: 3}
   currentIDArme: 0
   ie:
   - tagName: Untagged
@@ -60856,6 +60893,8 @@ MonoBehaviour:
       type: 3}
   cShake: {fileID: 2079521116595383950}
   textMun: {fileID: 0}
+  typeArme: {fileID: 0}
+  addArmeImage: {fileID: 0}
 --- !u!114 &2767248115711001682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60899,7 +60938,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0.04
   clientAuthority: 1
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
@@ -60918,7 +60957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0.15
   clientAuthority: 1
   animator: {fileID: 5553869646443040326}
 --- !u!114 &8263777669115637188
@@ -60934,7 +60973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0.15
   clientAuthority: 0
   localPositionSensitivity: 1000
   localRotationSensitivity: 0.01
@@ -61106,12 +61145,13 @@ MonoBehaviour:
   idArme: 2
   m_animator: {fileID: 5553869646443040326}
   currentMunition: 3
-  chargeurMunition: 200
+  chargeurMunition: 16
   maxMunition: 8
   shootRate: 0.8
   reloadTimeParDouille: 0.8
   magnitudeShakeShoot: 0.1
   timeShakeShoot: 0.1
+  multAmmo: 1.5
   layerImpactDegat:
     serializedVersion: 2
     m_Bits: 5431

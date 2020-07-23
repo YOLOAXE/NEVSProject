@@ -18,6 +18,7 @@ namespace DitzelGames.FastIK
         [SerializeField] private float reloadTime = 0.8f;
         [SerializeField] private float magnitudeShakeShoot = 0.1f;
         [SerializeField] private float timeShakeShoot = 0.5f;
+        [SerializeField] private float multAmmo = 1.0f;
         [Header("Arme Raycast")]
         [SerializeField] private LayerMask layerImpactDegat = 0;
         [SerializeField] private float hitForceTire = 0;
@@ -115,6 +116,18 @@ namespace DitzelGames.FastIK
             {
                 this.isReload = false;
             }
+        }
+
+        public override bool AddMunition(int munCharg)
+        {
+            this.chargeurMunition += (int)(munCharg * multAmmo);
+            base.wM.RpcSendMunition(base.idArme, this.currentMunition, this.chargeurMunition);
+            return true;
+        }
+
+        public override int GetMultByAddMun(int munCharg)
+        {
+            return (int)(munCharg * multAmmo);
         }
 
         public override void OnChangeWeapon()

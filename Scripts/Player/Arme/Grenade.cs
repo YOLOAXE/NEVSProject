@@ -11,6 +11,7 @@ namespace DitzelGames.FastIK
         [SerializeField] private Animator m_animator = null;
         [SerializeField] private int currentMunition = 10;
         [SerializeField] private float shootRate = 0.8f;
+        [SerializeField] private float multAmmo = 1.0f;
         [Header("Shoot Setting")]
         [SerializeField] private float forceSendGrenade = 3000f;
         [SerializeField] private GameObject grenadeSpawn = null;
@@ -45,6 +46,18 @@ namespace DitzelGames.FastIK
             {
                 base.wM.SetTextMun(this.currentMunition.ToString());
             }
+        }
+
+        public override bool AddMunition(int munCharg)
+        {
+            this.currentMunition += (int)(munCharg * multAmmo);
+            base.wM.RpcSendMunition(base.idArme, this.currentMunition, 0);
+            return true;
+        }
+
+        public override int GetMultByAddMun(int munCharg)
+        {
+            return (int)(munCharg * multAmmo);
         }
 
         public override void CmdSendTire()
