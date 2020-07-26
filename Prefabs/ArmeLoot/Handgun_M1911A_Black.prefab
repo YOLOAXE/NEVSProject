@@ -9899,6 +9899,7 @@ GameObject:
   - component: {fileID: 3681669800597662047}
   - component: {fileID: 6940773657258115444}
   - component: {fileID: 6940773657258115445}
+  - component: {fileID: 4700774151838944099}
   m_Layer: 8
   m_Name: Handgun_M1911A_Black
   m_TagString: Untagged
@@ -9913,7 +9914,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6940773657258115450}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.66, y: 0.89496976, z: 9.849}
   m_LocalScale: {x: 0.19947448, y: 0.20003532, z: 0.20059356}
   m_Children:
@@ -9955,6 +9956,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  sw: {fileID: 0}
   idWeapon: 7
 --- !u!65 &6940773657258115445
 BoxCollider:
@@ -9969,6 +9971,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1, z: 1}
   m_Center: {x: 0, y: 0.2, z: 0.3}
+--- !u!95 &4700774151838944099
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6940773657258115450}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7d86c14b0f842604fbf3ac3c825c5d6b, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6940813787747607172
 GameObject:
   m_ObjectHideFlags: 0

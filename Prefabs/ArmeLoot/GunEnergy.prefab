@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 234032938988838992}
   - component: {fileID: 1365988693800129064}
   - component: {fileID: 1365988693800129067}
+  - component: {fileID: 3106929978616936863}
   m_Layer: 8
   m_Name: GunEnergy
   m_TagString: Untagged
@@ -184,7 +185,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1365988693800129065}
-  m_LocalRotation: {x: -0.0962221, y: -0.6931681, z: 0.0024006665, w: -0.71432036}
+  m_LocalRotation: {x: 0.09622174, y: 0.69316524, z: -0.002402615, w: 0.71432316}
   m_LocalPosition: {x: 1.6484005, y: 0.709, z: 10.077548}
   m_LocalScale: {x: 0.10031987, y: 0.101437986, z: 0.09932178}
   m_Children:
@@ -228,6 +229,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  sw: {fileID: 0}
   idWeapon: 9
 --- !u!65 &1365988693800129067
 BoxCollider:
@@ -242,6 +244,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.4326677, y: 1.5394019, z: 0.683164}
   m_Center: {x: 4.783457, y: 0.94636226, z: -0.066105515}
+--- !u!95 &3106929978616936863
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365988693800129065}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aa928433c31119040808d88c5fc30b47, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2121267740683042086
 GameObject:
   m_ObjectHideFlags: 0

@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 6711785328852923947}
   - component: {fileID: 7614629575013350847}
   - component: {fileID: 7614629575013350846}
+  - component: {fileID: 7924022844092484317}
   m_Layer: 8
   m_Name: Flashlight_GameObject
   m_TagString: Untagged
@@ -106,7 +107,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7614629575013350833}
-  m_LocalRotation: {x: 0.0009102205, y: -0.0678474, z: 0.017308684, w: -0.9975452}
+  m_LocalRotation: {x: -0.00090612913, y: 0.06784446, z: -0.017308693, w: 0.9975454}
   m_LocalPosition: {x: 1.091, y: 0.9256087, z: 9.326}
   m_LocalScale: {x: 0.5860117, y: 0.59053135, z: 0.5878412}
   m_Children:
@@ -144,6 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  sw: {fileID: 0}
   idWeapon: 1
 --- !u!65 &7614629575013350846
 BoxCollider:
@@ -158,3 +160,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.15, y: 0.15, z: 0.4}
   m_Center: {x: 0, y: 0, z: 0.06}
+--- !u!95 &7924022844092484317
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7614629575013350833}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f92f47cf3180e314aa4f4a81aafbef62, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

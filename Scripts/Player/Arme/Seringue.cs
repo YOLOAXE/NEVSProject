@@ -24,7 +24,7 @@ namespace DitzelGames.FastIK
 
         public override IEnumerator shoot()
         {
-            if (this.activePourcentage >= 100 && Input.GetButtonDown("Fire1"))
+            if (this.activePourcentage >= 100 && GameInputManager.GetKeyDown("Tire"))
             {
                 GameObject Target = GetPlayerSoin();
                 if (Target)
@@ -38,7 +38,7 @@ namespace DitzelGames.FastIK
                 }
                 yield return null;
             }
-            else if (Input.GetButtonDown("Fire1"))
+            else if (GameInputManager.GetKeyDown("Tire"))
             {
                 base.netAnim.SetTrigger("reloadOneShot");
             }

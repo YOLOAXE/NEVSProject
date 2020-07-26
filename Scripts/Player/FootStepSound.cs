@@ -34,7 +34,7 @@ public class FootStepSound : NetworkBehaviour
 
     public void AplyStep(int idDirection)
     {
-        if(Input.GetAxis("Horizontal") != 0 && Input.GetAxis("Vertical") != 0 && idDirection == 1 && !Input.GetButton("Sprint"))
+        if((GameInputManager.GetKey("Avancer") || GameInputManager.GetKey("Reculer")) && (GameInputManager.GetKey("strafeGauche") || GameInputManager.GetKey("strafeDroite")) && idDirection == 1 && !GameInputManager.GetKey("Sprint"))
         {
             return;
         }

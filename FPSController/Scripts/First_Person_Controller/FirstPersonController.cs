@@ -408,6 +408,7 @@ namespace VHS
             m_CrouchRoutine = CrouchRoutine();
             StartCoroutine(m_CrouchRoutine);
         }
+
         IEnumerator crouchAnimeCR(float waitTime,Vector3 currentPos, Vector3 Gotoposition)
         {
             float elapsedTime = 0;

@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 5297014010019381319}
   - component: {fileID: 7899475328966294932}
   - component: {fileID: 7899475328966294933}
+  - component: {fileID: 6278644397172564451}
   m_Layer: 8
   m_Name: Rpg7
   m_TagString: Untagged
@@ -107,7 +108,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7899475328966294934}
-  m_LocalRotation: {x: 0.044877898, y: -0.9989236, z: -0.011500846, w: 0.0023273628}
+  m_LocalRotation: {x: -0.04487417, y: 0.9989237, z: 0.011504257, w: -0.0023302662}
   m_LocalPosition: {x: 0.512, y: 1.058158, z: 10.01079}
   m_LocalScale: {x: 6.9907327, y: 7.0109415, z: 7.0001593}
   m_Children:
@@ -196,6 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  sw: {fileID: 0}
   idWeapon: 8
 --- !u!65 &7899475328966294933
 BoxCollider:
@@ -210,3 +212,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.01011342, y: 0.02228211, z: 0.11946199}
   m_Center: {x: -7.9020245e-12, y: 4.4098742e-11, z: -0.017533321}
+--- !u!95 &6278644397172564451
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7899475328966294934}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 650d12150c6c39e46a0efd2b9b556947, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

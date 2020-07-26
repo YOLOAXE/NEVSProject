@@ -18,7 +18,7 @@ namespace VHS
         private float distance = 0f;
         [Header("Raycast Setting")]
         [SerializeField] private int balleparTire = 10;
- 
+
         [SerializeField] private float degatParBalle = 10.0f;
         [SerializeField] private float Z = 10;
         [SerializeField] private float scale = 0.1f;
@@ -31,33 +31,39 @@ namespace VHS
         public override void attack()
         {
             base.agent.isStopped = true;
+            if (base.targetPlayer == null) { return; }
+
             this.distance = Vector3.Distance(this.transform.position, base.targetPlayer.transform.position);
-            if (base.targetPlayer)
+            if (base.targetPlayer.GetComponent<Player>().GetIsAlive())
             {
-                if ((distance > base.huntingDistance && !attaque) || (distance > (base.huntingDistance*1.5f) && attaque))
+                if ((distance > base.huntingDistance && !attaque) || (distance > (base.huntingDistance * 1.5f) && attaque))
                 {
-                        base.agent.SetDestination(base.targetPlayer.transform.position);
-                        base.agent.isStopped = false;
-                        attaque = false;       
+                    base.agent.SetDestination(base.targetPlayer.transform.position);
+                    base.agent.isStopped = false;
+                    attaque = false;
                 }
                 else
                 {
-                    this.shootPoint.transform.LookAt(base.targetPlayer.transform.position + new Vector3(0f, 0.5f, 0f));
                     attaque = true;
                     StartCoroutine(ShootIEnum());
                 }
             }
-
+            else
+            {
+                base.targetPlayer = null;
+                base.ed.ResetTP();
+                return;
+            }
             lookPos = this.targetPlayer.transform.position - this.transform.position;
             lookPos.y = 0;
             lookAngle = Quaternion.LookRotation(lookPos);
-            this.transform.rotation = Quaternion.Slerp(transform.rotation, lookAngle, Time.deltaTime * (base.agent.angularSpeed/30));
+            this.transform.rotation = Quaternion.Slerp(transform.rotation, lookAngle, Time.deltaTime * (base.agent.angularSpeed / 30));
         }
 
         [Server]
         IEnumerator ShootIEnum()
         {
-            if(!this.shoot)
+            if (!this.shoot)
             {
                 this.shoot = true;
                 base.m_animator.SetBool("fire", true);
@@ -69,7 +75,7 @@ namespace VHS
                     this.ray = new Ray(this.shootPoint.transform.position, direction);
                     if (Physics.Raycast(this.ray, out hit, Mathf.Infinity, this.lm))
                     {
-                        if(hit.transform.tag == "Player" || hit.transform.tag == "nlPlayer")
+                        if (hit.transform.tag == "Player" || hit.transform.tag == "nlPlayer")
                         {
                             hit.transform.GetComponent<Player>().ReceiveDamage(degatParBalle);
                         }
@@ -82,6 +88,14 @@ namespace VHS
                 base.m_animator.SetBool("aim", false);
 
                 this.shoot = false;
+            }
+        }
+
+        public override void cannonTargetPlayer()
+        {
+            if (base.targetPlayer)
+            {
+                this.shootPoint.transform.LookAt(base.targetPlayer.transform.position + new Vector3(0f, 0.5f, 0f));
             }
         }
         #endregion

@@ -31,8 +31,8 @@ namespace VHS
         #region Custom Methods
             void GetInteractionInputData()
             {
-                interactionInputData.InteractedClicked = Input.GetKeyDown(KeyCode.E);
-                interactionInputData.InteractedReleased = Input.GetKeyUp(KeyCode.E);
+                interactionInputData.InteractedClicked = GameInputManager.GetKeyDown("Interagire");
+                interactionInputData.InteractedReleased = GameInputManager.GetKeyUp("Interagire");
             }
 
             void GetCameraInput()
@@ -40,17 +40,17 @@ namespace VHS
                 cameraInputData.InputVectorX = Input.GetAxis("Mouse X");
                 cameraInputData.InputVectorY = Input.GetAxis("Mouse Y");
 
-                cameraInputData.ZoomClicked = Input.GetMouseButtonDown(1);
-                cameraInputData.ZoomReleased = Input.GetMouseButtonUp(1);
+                cameraInputData.ZoomClicked = GameInputManager.GetKeyDown("Viser");
+                cameraInputData.ZoomReleased = GameInputManager.GetKeyUp("Viser");
             }
 
             void GetMovementInputData()
             {
-                movementInputData.InputVectorX = Input.GetAxisRaw("Horizontal");
-                movementInputData.InputVectorY = Input.GetAxisRaw("Vertical");
+                movementInputData.InputVectorX = GameInputManager.GetKey("strafeDroite") ? 1 : GameInputManager.GetKey("strafeGauche") ? -1 : 0;
+                movementInputData.InputVectorY = GameInputManager.GetKey("Avancer") ? 1 : GameInputManager.GetKey("Reculer") ? -1 : 0;
 
-                movementInputData.RunClicked = Input.GetKeyDown(KeyCode.LeftShift);
-                movementInputData.RunReleased = Input.GetKeyUp(KeyCode.LeftShift);
+                movementInputData.RunClicked = GameInputManager.GetKeyDown("Sprint");
+                movementInputData.RunReleased = GameInputManager.GetKeyUp("Sprint");
 
                 if(movementInputData.RunClicked)
                     movementInputData.IsRunning = true;
@@ -58,8 +58,8 @@ namespace VHS
                 if(movementInputData.RunReleased)
                     movementInputData.IsRunning = false;
 
-                movementInputData.JumpClicked = Input.GetKeyDown(KeyCode.Space);
-                movementInputData.CrouchClicked = Input.GetKeyDown(KeyCode.LeftControl);
+                movementInputData.JumpClicked = GameInputManager.GetKeyDown("Sauter");
+                movementInputData.CrouchClicked = GameInputManager.GetKeyDown("Acroupie");
             }
         #endregion
     }

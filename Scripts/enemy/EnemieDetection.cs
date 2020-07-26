@@ -25,7 +25,7 @@ namespace VHS
                 if (Physics.Raycast(this.raycastPoint.transform.position, this.raycastPoint.transform.TransformDirection(Vector3.forward), out this.hit, Mathf.Infinity, lm))
                 {
                     Debug.DrawRay(this.raycastPoint.transform.position, this.raycastPoint.transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
-                    if (other.transform.gameObject == this.hit.transform.gameObject)
+                    if (other.transform.gameObject == this.hit.transform.gameObject && this.hit.transform.gameObject.GetComponent<Player>().GetIsAlive())
                     {
                         if(this.targetPlayer)
                         {

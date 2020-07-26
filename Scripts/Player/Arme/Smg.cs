@@ -34,7 +34,7 @@ namespace DitzelGames.FastIK
         {
             if (currentMunition > 0 && !isReload)
             {
-                if (!isShoot && Input.GetButton("Fire1"))
+                if (!isShoot && GameInputManager.GetKey("Tire"))
                 {
                     isShoot = true;
                     m_animator.SetBool("shootContinue",true);
@@ -44,7 +44,7 @@ namespace DitzelGames.FastIK
                     isShoot = false;
                 }
             }
-            else if (Input.GetButtonDown("Fire1"))
+            else if (GameInputManager.GetKeyDown("Tire"))
             {
                 base.netAnim.SetTrigger("noAmmo");
             }
@@ -52,7 +52,7 @@ namespace DitzelGames.FastIK
             {
                 m_animator.SetBool("shootContinue", false);
             }
-            if (Input.GetButtonUp("Fire1"))
+            if (GameInputManager.GetKeyUp("Tire"))
             {
                 m_animator.SetBool("shootContinue", false);
             }

@@ -4827,6 +4827,7 @@ GameObject:
   - component: {fileID: 1148192724465201035}
   - component: {fileID: 5703262314833080221}
   - component: {fileID: 5703262314833080222}
+  - component: {fileID: 7928562864535852155}
   m_Layer: 8
   m_Name: M40A3 Rifle_prefab
   m_TagString: Untagged
@@ -4841,7 +4842,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5703262314833080223}
-  m_LocalRotation: {x: 0.0036576127, y: -0.10698683, z: -0.025003826, w: -0.9939393}
+  m_LocalRotation: {x: 0.003656657, y: -0.10699093, z: -0.025000678, w: -0.9939389}
   m_LocalPosition: {x: 1.154, y: 0.86875033, z: 10.047635}
   m_LocalScale: {x: 0.40143618, y: 0.42682928, z: 0.42879027}
   m_Children:
@@ -4926,6 +4927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  sw: {fileID: 0}
   idWeapon: 3
 --- !u!65 &5703262314833080222
 BoxCollider:
@@ -4940,6 +4942,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.06569608, y: 0.26518375, z: 1.1376734}
   m_Center: {x: -0.0000000037252903, y: -0.000000022351742, z: -0.0000019073486}
+--- !u!95 &7928562864535852155
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5703262314833080223}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f402d744252a5d9449a3619d961f0be3, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8436669878905974775
 GameObject:
   m_ObjectHideFlags: 0

@@ -137,26 +137,26 @@ public class WeaponManager : NetworkBehaviour
     {
         handObject.transform.eulerAngles = pivotCam.transform.eulerAngles;
         if (!isLocalPlayer) { return; }
-        if (Input.GetButton("Fire1") || Input.GetButtonUp("Fire1"))
+        if (GameInputManager.GetKey("Tire") || GameInputManager.GetKeyUp("Tire"))
         {
             StartCoroutine(wI[currentIDArme].getArmeScript().shoot());
         }
-        if (Input.GetButton("Reload"))
+        if (GameInputManager.GetKey("Recharger"))
         {
             StartCoroutine(wI[currentIDArme].getArmeScript().reload());
         }
-        wI[this.currentIDArme].getArmeScript().AimArme(Input.GetButton("Fire2"));
-        if (Input.GetButtonDown("ArmeSuivante"))
+        wI[this.currentIDArme].getArmeScript().AimArme(GameInputManager.GetKey("Viser"));
+        if (GameInputManager.GetKeyDown("ArmeSuivante"))
         {
             wI[this.currentIDArme].getArmeScript().OnChangeWeapon();
             CmdChangeWeapon(true);
         }
-        if (Input.GetButtonDown("ArmePrecedente"))
+        if (GameInputManager.GetKeyDown("ArmePrecedente"))
         {
             wI[this.currentIDArme].getArmeScript().OnChangeWeapon();
             CmdChangeWeapon(false);
         }
-        handAnimator.SetBool("Aim", Input.GetButton("Fire2"));
+        handAnimator.SetBool("Aim", GameInputManager.GetKey("Viser"));
     }
 
     [Command]
@@ -307,5 +307,17 @@ public class WeaponManager : NetworkBehaviour
     public void StartcShake(float duration, float magnitude)
     {
         StartCoroutine(this.cShake.Shake(duration, magnitude));
+    }
+
+    public void SetDeath(bool state)
+    {
+        this.textMun.gameObject.SetActive(state);
+        this.typeArme.gameObject.SetActive(state);
+        this.addArmeImage.SetActive(state);
+        if (state)
+        {
+            wI[this.currentIDArme].getArmeScript().OnChangeWeapon();
+            CmdChangeWeapon(false);
+        }
     }
 }

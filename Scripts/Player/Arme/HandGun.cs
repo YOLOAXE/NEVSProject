@@ -35,7 +35,7 @@ namespace DitzelGames.FastIK
         {
             if (this.currentMunition > 0)
             {
-                if (!isShoot && !isReload && Input.GetButtonDown("Fire1"))
+                if (!isShoot && !isReload && GameInputManager.GetKeyDown("Tire"))
                 {
                     isShoot = true;
                     base.netAnim.SetTrigger("shootOneShot");
@@ -45,7 +45,7 @@ namespace DitzelGames.FastIK
                     isShoot = false;
                 }
             }
-            else if (Input.GetButtonDown("Fire1"))
+            else if (GameInputManager.GetKeyDown("Tire"))
             {
                 base.netAnim.SetTrigger("noAmmo");
             }

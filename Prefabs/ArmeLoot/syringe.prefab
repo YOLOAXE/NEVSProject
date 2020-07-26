@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 1279158511292703189}
   - component: {fileID: 5628252913425341122}
   - component: {fileID: 5628252913425341133}
+  - component: {fileID: 5722998401977058040}
   m_Layer: 8
   m_Name: syringe
   m_TagString: Untagged
@@ -184,7 +185,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5628252913425341132}
-  m_LocalRotation: {x: -0.7322333, y: -3.4097272e-10, z: -3.1714048e-10, w: 0.681054}
+  m_LocalRotation: {x: -0.7322339, y: -0.00000012752962, z: -0.00000013711336, w: 0.6810533}
   m_LocalPosition: {x: 1.468, y: 0.92847157, z: 10.110934}
   m_LocalScale: {x: 0.7350185, y: 0.8139775, z: 0.81624895}
   m_Children:
@@ -224,6 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  sw: {fileID: 0}
   idWeapon: 6
 --- !u!65 &5628252913425341133
 BoxCollider:
@@ -238,6 +240,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.2, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &5722998401977058040
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628252913425341132}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d538485285b1b9848b02f10437ed6306, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7433197035525936238
 GameObject:
   m_ObjectHideFlags: 0

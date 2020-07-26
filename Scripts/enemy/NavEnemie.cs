@@ -24,11 +24,11 @@ namespace VHS
         private GameObject target = null;
 
         [Header("Detection")]
-        [SerializeField] private EnemieDetection ed = null;
+        [SerializeField] protected EnemieDetection ed = null;
 
         [Header("Combat")]
         [SerializeField] private bool inFight = false;
-        [SerializeField] protected GameObject targetPlayer = null;
+        [SerializeField] [SyncVar] protected GameObject targetPlayer = null;
         [SerializeField] private float timeFight = 15f;
         [SerializeField] private float tempsMort = 3f;
         private float timerF = -20f;
@@ -49,7 +49,8 @@ namespace VHS
 
         void Update()
         {
-            if(!isServer || this.isDead) {return;}
+            cannonTargetPlayer();
+            if (!isServer || this.isDead) {return;}
             patrol();
             TargetPlayerTime();
             if(this.inFight)
@@ -107,7 +108,10 @@ namespace VHS
             this.timerF = this.timeFight;
             this.research = false;
             this.researchNb = 3;
-            this.targetPlayer = TPlayer;
+            if (TPlayer != this.targetPlayer)
+            {
+                this.targetPlayer = TPlayer;
+            }
         }
 
         public void ReceiveDamage(float damage,GameObject player)
@@ -141,7 +145,8 @@ namespace VHS
         }
 
         public virtual void attack() { }
-        
+        public virtual void cannonTargetPlayer() { }
+
         #endregion
     }
 }

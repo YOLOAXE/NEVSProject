@@ -40,6 +40,11 @@ namespace Mirror.Examples.MultipleAdditiveScenes
                 bo.ReceiveAllPlayer(al);
             }
         }
+
+        public List<GameObject> GetPlayerList()
+        {
+            return this.allPlayer;
+        }
         #endregion
     }
 }

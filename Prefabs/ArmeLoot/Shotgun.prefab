@@ -10492,6 +10492,7 @@ GameObject:
   - component: {fileID: 5135061490142017125}
   - component: {fileID: 7383931249502625375}
   - component: {fileID: 7383931249502625374}
+  - component: {fileID: 740107696}
   m_Layer: 8
   m_Name: Shotgun
   m_TagString: Untagged
@@ -10506,7 +10507,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7383931249502625377}
-  m_LocalRotation: {x: 0.04970122, y: -0.9929901, z: -0.03295347, w: 0.10205195}
+  m_LocalRotation: {x: -0.049698234, y: 0.9929899, z: 0.03295223, w: -0.102056086}
   m_LocalPosition: {x: 0.895, y: 0.9035, z: 10.075912}
   m_LocalScale: {x: 0.43511018, y: 0.4346943, z: 0.4343829}
   m_Children:
@@ -10549,6 +10550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  sw: {fileID: 0}
   idWeapon: 2
 --- !u!65 &7383931249502625374
 BoxCollider:
@@ -10563,6 +10565,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.13735355, y: 0.22393078, z: 1.342389}
   m_Center: {x: 0.00036823173, y: -0.06412243, z: -0.01346742}
+--- !u!95 &740107696
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7383931249502625377}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 62e7e251cdac28843a8c0ad3d4b53c47, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7532186341189829160
 GameObject:
   m_ObjectHideFlags: 0
