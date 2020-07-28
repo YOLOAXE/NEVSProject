@@ -18,10 +18,10 @@ namespace VHS
         private float distance = 0f;
         [Header("Raycast Setting")]
         [SerializeField] private int balleparTire = 10;
-
         [SerializeField] private float degatParBalle = 10.0f;
         [SerializeField] private float Z = 10;
         [SerializeField] private float scale = 0.1f;
+        [SerializeField] private bool seePlayer = false;
         private RaycastHit hit;
         private Ray ray;
         Vector3 lookPos = Vector3.zero;
@@ -38,14 +38,34 @@ namespace VHS
             {
                 if ((distance > base.huntingDistance && !attaque) || (distance > (base.huntingDistance * 1.5f) && attaque))
                 {
-                    base.agent.SetDestination(base.targetPlayer.transform.position);
-                    base.agent.isStopped = false;
-                    attaque = false;
+                    if (!seePlayer)
+                    {
+                        base.agent.SetDestination(base.targetPlayer.transform.position);
+                        base.agent.isStopped = false;
+                        attaque = false;
+                    }
                 }
                 else
                 {
-                    attaque = true;
-                    StartCoroutine(ShootIEnum());
+                    Vector3 direction = Random.insideUnitCircle * this.scale;
+                    direction.z = 10;
+                    direction = this.shootPoint.transform.TransformDirection(direction.normalized);
+                    this.ray = new Ray(this.shootPoint.transform.position, direction);
+                    if (Physics.Raycast(this.ray, out hit, Mathf.Infinity, this.lm))
+                    {
+                        if (hit.transform.tag == "Player" || hit.transform.tag == "nlPlayer")
+                        {
+                            attaque = true;
+                            seePlayer = true;
+                            StartCoroutine(ShootIEnum());
+                        }
+                        else
+                        {
+                            base.agent.SetDestination(base.targetPlayer.transform.position);
+                            base.agent.isStopped = false;
+                            seePlayer = false;
+                        }
+                    }
                 }
             }
             else
@@ -86,7 +106,7 @@ namespace VHS
                 base.m_animator.SetBool("fire", false);
                 yield return new WaitForSeconds(shootRate);
                 base.m_animator.SetBool("aim", false);
-
+                this.seePlayer = false;
                 this.shoot = false;
             }
         }

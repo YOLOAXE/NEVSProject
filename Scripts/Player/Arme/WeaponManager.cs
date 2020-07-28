@@ -314,10 +314,7 @@ public class WeaponManager : NetworkBehaviour
         this.textMun.gameObject.SetActive(state);
         this.typeArme.gameObject.SetActive(state);
         this.addArmeImage.SetActive(state);
-        if (state)
-        {
-            wI[this.currentIDArme].getArmeScript().OnChangeWeapon();
-            CmdChangeWeapon(false);
-        }
+        wI[this.currentIDArme].getArmeScript().OnChangeWeapon();
+        CmdChangeWeapon(state);
     }
 }

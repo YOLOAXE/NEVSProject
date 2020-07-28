@@ -34,24 +34,31 @@ public class Player : NetworkBehaviour
     [SerializeField] private AudioSource mouseAudioS = null;
     [SerializeField] private AudioSource heartAudioS = null;
     [SerializeField] private AudioClip[] hurtDegat = null;
+    [Header("Accroupi")]
+    [SerializeField] private GameObject camHolder = null;
+    private bool sneak = false;
 
     void Start()
     {
         if (!isLocalPlayer) { return; }
         textName.gameObject.SetActive(false);
-        namePL = PlayerPrefs.GetString("Pseudo", "Joueur");
-        textName.text = this.namePL;
+        CmdChangeName(PlayerPrefs.GetString("Pseudo", "Joueur"));
         sO = GameObject.Find("SangOverlay").GetComponent<Image>();
         sOHit = GameObject.Find("SangOverlay2").GetComponent<Image>();
     }
 
     void Update()
     {
-        if (!isLocalPlayer && isAlive)
+        if (!isLocalPlayer || !isAlive)
         {
             return;
         }
         AplyAnimation();
+        if(GameInputManager.GetKeyDown("Acroupie"))
+        {
+            sneak = !sneak;
+            CmdChangePosCam(sneak);
+        }
     }
 
     #region Start & Stop Callbacks
@@ -66,8 +73,23 @@ public class Player : NetworkBehaviour
     private void AplyAnimation()
     {
         anim.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
-        anim.SetFloat("Vertical", Input.GetAxis("Vertical") * (Input.GetButton("Sprint") ? 2f : 1f));
-        anim.SetBool("jump", controller.isGrounded && !Input.GetButton("Jump"));
+        anim.SetFloat("Vertical", Input.GetAxis("Vertical") * (GameInputManager.GetKey("Sprint") ? 2f : 1f));
+        anim.SetBool("jump", controller.isGrounded && !GameInputManager.GetKey("Sauter"));
+    }
+
+    [Command]
+    private void CmdChangePosCam(bool state)
+    {
+        if (!isLocalPlayer)
+        {
+            camHolder.transform.localPosition = state ? new Vector3(0, -0.72f, 0) : new Vector3(0, 0, 0);
+        }
+    }
+
+    [Command]
+    private void CmdChangeName(string name)
+    {
+        this.namePL = name;
     }
 
     private void OnChangeHealth(float oldHealth, float newhealth)

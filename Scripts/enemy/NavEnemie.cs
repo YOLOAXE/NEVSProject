@@ -21,6 +21,8 @@ namespace VHS
         [SerializeField] protected int patrolTarget = 0;
         [SerializeField] private bool research = false;
         [SerializeField] private int researchNb = 3;
+        [SerializeField] private float vitesseBase = 1f;
+        [SerializeField] private float vitesseSprint = 2f;
         private GameObject target = null;
 
         [Header("Detection")]
@@ -30,16 +32,21 @@ namespace VHS
         [SerializeField] private bool inFight = false;
         [SerializeField] [SyncVar] protected GameObject targetPlayer = null;
         [SerializeField] private float timeFight = 15f;
-        [SerializeField] private float tempsMort = 3f;
+        [SerializeField] protected float tempsMort = 3f;
         private float timerF = -20f;
 
         [Header("Mort")]
-        [SerializeField] private ParticleSystem ps;
-        private bool isDead = false;
+        [SerializeField] protected ParticleSystem ps;
+        [SyncVar] protected bool isDead = false;
 
         [Header("Animation")]
         [SerializeField] protected Animator m_animator = null;
 
+        void Start()
+        {
+            StartCoroutine(CSound());
+        }
+        
         #region Start & Stop Callbacks
 
         public override void OnStartServer()
@@ -55,6 +62,7 @@ namespace VHS
             TargetPlayerTime();
             if(this.inFight)
             {
+                this.agent.speed = this.vitesseSprint;
                 this.attack();
             }
             m_animator.SetFloat("Speed", this.agent.desiredVelocity.magnitude);
@@ -96,6 +104,7 @@ namespace VHS
                 if (this.researchNb == 0)
                 {
                     this.research = false;
+                    this.agent.speed = this.vitesseBase;
                     this.researchNb = 3;
                     agent.SetDestination(path[this.patrolTarget].transform.position);
                 }
@@ -135,7 +144,7 @@ namespace VHS
             StartCoroutine(dead());
         }
 
-        private IEnumerator dead()
+        public virtual IEnumerator dead()
         {
             ps.transform.eulerAngles = new Vector3(0.0f, 150.0f, 0.0f);
             yield return new WaitForSeconds(3f);            
@@ -148,5 +157,6 @@ namespace VHS
         public virtual void cannonTargetPlayer() { }
 
         #endregion
+        public virtual IEnumerator CSound() { yield return null; }
     }
 }
