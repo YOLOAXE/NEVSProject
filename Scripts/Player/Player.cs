@@ -96,6 +96,7 @@ public class Player : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
+            GetComponent<WeaponManager>().StartcShake(0.1f, 0.1f);
             float value = 1 - (this.currenthealth / this.maxhealth);
             sO.color = new Color(1, 1, 1, value >= 0.6f ? ((value - 0.6f) / 0.4f) : 0);
             if (oldHealth > newhealth)
@@ -174,7 +175,11 @@ public class Player : NetworkBehaviour
             {
                 this.currenthealth += heal;
             }
-            this.isAlive = true;
+            if (!this.isAlive)
+            {
+                this.isAlive = true;
+                StartCoroutine(RegenHealth());
+            }
         }
     }
 
@@ -224,6 +229,7 @@ public class Player : NetworkBehaviour
             {
                 this.currenthealth = 0;
                 this.isAlive = false;
+                GameObject.Find("NetworkRespawn").GetComponent<PointDeSauvegarde>().CheckAllPlayerForRespon();
             }
             else
             {

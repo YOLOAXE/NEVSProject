@@ -11,34 +11,16 @@ namespace Mirror.Examples.MultipleAdditiveScenes
     {
         [Header("Other")]
         [SerializeField] private List<GameObject> allPlayer = new List<GameObject>();
-        [Header("Boss")]
-        [SerializeField] private Boss[] b = null;
 
         #region Server System Callbacks
         public override void OnServerAddPlayer(NetworkConnection conn)
         {
-            StartCoroutine(AddPlayerDelayed(conn));
+            base.OnServerAddPlayer(conn);
+            this.allPlayer.Add(conn.identity.transform.gameObject);
         }
         public override void OnServerRemovePlayer(NetworkConnection conn, NetworkIdentity player)
         {
             allPlayer.Remove(conn.identity.transform.gameObject);
-            SendPlayerList(this.allPlayer);
-        }
-
-        IEnumerator AddPlayerDelayed(NetworkConnection conn)
-        {
-            yield return new WaitForSeconds(0.1f);
-            base.OnServerAddPlayer(conn);
-            allPlayer.Add(conn.identity.transform.gameObject);
-            SendPlayerList(this.allPlayer);
-        }
-
-        private void SendPlayerList(List<GameObject> al)
-        {
-            foreach (Boss bo in b)
-            {
-                bo.ReceiveAllPlayer(al);
-            }
         }
 
         public List<GameObject> GetPlayerList()

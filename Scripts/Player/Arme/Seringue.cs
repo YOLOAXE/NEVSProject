@@ -76,15 +76,12 @@ namespace DitzelGames.FastIK
 
         IEnumerator Regenne()
         {
-            while (true)
-            {
+            while (drawtxt)
+            {                
                 if (this.activePourcentage < 100)
                 {
                     this.activePourcentage++;
-                    if (drawtxt)
-                    {
-                        base.wM.SetTextMun(this.activePourcentage.ToString() + "%");
-                    }
+                    base.wM.SetTextMun(this.activePourcentage.ToString() + "%");
                 }
                 if (isServer && this.activePourcentage % 10 == 0)
                 {
@@ -108,7 +105,10 @@ namespace DitzelGames.FastIK
         public override void OnSelectWeapon()
         {
             drawtxt = true;
-            StartCoroutine(Regenne());
+            if (gameObject.activeSelf)
+            {
+                StartCoroutine(Regenne());
+            }
             base.wM.SetTextMun(this.activePourcentage.ToString() + "%");
         }
 

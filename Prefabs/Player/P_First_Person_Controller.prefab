@@ -5978,7 +5978,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 5431
   hitForceTire: 1000
-  degatParBalle: 20
+  degatParBalle: 25
   Z: 10
   scale: 0.1
   targetCamera: {fileID: 2814771591265964727}
