@@ -43,5 +43,22 @@ public class BossZoneManager : NetworkBehaviour
             o.SetActive(state);
         }
     }
+
+    [Server]
+    public void SetendFight(bool state)
+    {
+        this.endFight = state;
+    }
+
+    [Server]
+    public void ResetBoss()
+    {
+        if (!endFight)
+        {
+            bossFight = false;
+            RpcactiveZone(false);
+            b.rBoss();
+        }
+    }
     #endregion
 }

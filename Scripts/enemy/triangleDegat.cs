@@ -117,6 +117,12 @@ public class triangleDegat : NetworkBehaviour
             player.Add(other.gameObject);
         }
     }
+
+    [Server]
+    public void stop()
+    {
+        Destroy();
+    }
 }
 
 

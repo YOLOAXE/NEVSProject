@@ -22,6 +22,7 @@ public class AT2 : AttaqueBoss
     [SerializeField] private float radiusSpawn = 12f;
     [SerializeField] private float tempsSpawn = 1.5f;
     [SerializeField] private float tempsAttaque = 35f;
+    [SerializeField] private List<GameObject> listSphereD = new List<GameObject>();
     private float timerA = 0;
     private float timerS = 0;
     private float nbs = 0;
@@ -45,6 +46,7 @@ public class AT2 : AttaqueBoss
         {
             GameObject io = Instantiate(sphereDegat, transform.position + Random.insideUnitSphere * radiusSpawn, Quaternion.identity);
             io.transform.position = new Vector3(io.transform.position.x, transform.position.y, io.transform.position.z);
+            listSphereD.Add(io);
             NetworkServer.Spawn(io);
             timerS = tempsSpawn* nbs;
             nbs -= 0.02f;
@@ -99,10 +101,23 @@ public class AT2 : AttaqueBoss
         intro = true;
         base.b.AplyTriggerNe("attaqueIntro");
         base.b.RpcShakeAllPlayer(duration, magnitude);
+        listSphereD.Clear();
         yield return new WaitForSeconds(tempsIntro);
         InitTemps();
         initDeplacementValue();
         anim.SetBool("Open", true);
         intro = false;
+    }
+
+    public override void resetAt()
+    {
+        anim.SetBool("Open", false);
+        foreach (GameObject o in listSphereD)
+        {
+            if(o)
+            {
+                o.GetComponent<SphereDegat>().stop();
+            }
+        }
     }
 }

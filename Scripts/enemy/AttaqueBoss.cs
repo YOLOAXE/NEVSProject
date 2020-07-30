@@ -9,5 +9,6 @@ abstract public class AttaqueBoss : NetworkBehaviour
     public virtual void attaqueStart() {}
     public virtual void attaqueUpdate(){}
     public virtual void deplacement() {}
+    public virtual void resetAt() { }
     #endregion
 }

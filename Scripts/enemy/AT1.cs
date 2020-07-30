@@ -102,4 +102,8 @@ public class AT1 : AttaqueBoss
         anim.SetBool("Open", true);
         intro = false;
     }
+    public override void resetAt()
+    {
+        anim.SetBool("Open", false);
+    }
 }

@@ -55,4 +55,10 @@ public class SphereDegat : NetworkBehaviour
             player.Add(other.gameObject);
         }
     }
+
+    [Server]
+    public void stop()
+    {
+        Destroy();
+    }
 }

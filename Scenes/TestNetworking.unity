@@ -40013,10 +40013,7 @@ MonoBehaviour:
   tpAfter: 5
   m_audio: {fileID: 1447743729}
   respawn: {fileID: 8300000, guid: 8b55202cfa1f3144c9c240d65afd7d71, type: 3}
-  boss: {fileID: 247075708}
-  bossObject: {fileID: 8239920173811662678, guid: 7d950fc53b20e51438aefb39f61b7c0a,
-    type: 3}
-  spawnPointBoss: {fileID: 1217884807}
+  boss: {fileID: 247075712}
 --- !u!114 &1447743728
 MonoBehaviour:
   m_ObjectHideFlags: 0

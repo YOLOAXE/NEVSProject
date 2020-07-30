@@ -15,9 +15,7 @@ public class PointDeSauvegarde : NetworkBehaviour
     [SerializeField] private AudioSource m_audio = null;
     [SerializeField] private AudioClip respawn = null;
     [Header("Boss Respawn")]
-    [SerializeField] private GameObject boss = null;
-    [SerializeField] private GameObject bossObject = null;
-    [SerializeField] private GameObject spawnPointBoss = null;
+    [SerializeField] private BossZoneManager boss = null;
 
 
     #region Start & Stop Callbacks
@@ -53,6 +51,7 @@ public class PointDeSauvegarde : NetworkBehaviour
         this.m_audio.PlayOneShot(this.m_audio.clip);
         StartCoroutine(tpb());
         this.RpcTpAllPlayer(this.unLock);
+        boss.ResetBoss();
     }
 
     IEnumerator tpb()

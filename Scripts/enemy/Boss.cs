@@ -87,6 +87,7 @@ public class Boss : NetworkBehaviour
         {
             inFight = false;
             db.isDead();
+            transform.parent.GetComponent<BossZoneManager>().SetendFight(true);
         }
     }
     #endregion
@@ -140,5 +141,22 @@ public class Boss : NetworkBehaviour
     public void RpcShakeAllPlayer(float duration, float magnitude)
     {
         GameObject.FindWithTag("Player").GetComponent<WeaponManager>().StartcShake(duration, magnitude);
+    }
+
+    public void rBoss()
+    {
+        if(inAttaque || inFight || inIntro)
+        {
+            AplyTriggerNe("desactive");
+            if (indiceAB >= 0)
+            {
+                ab[this.indiceAB].resetAt();
+            }
+        }
+        inFight = false;
+        inIntro = false;
+        inAttaque = false;
+        indiceAB = -1;
+        this.currentHealth = this.maxHealth;
     }
 }
